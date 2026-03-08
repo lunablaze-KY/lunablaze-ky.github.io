@@ -274,28 +274,7 @@
       border-top:1px solid rgba(255,255,255,.15);
       padding-top:20px;
     }
-
-    .trail-dot{
-      position:fixed;
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      pointer-events:none;
-      background:radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(139,92,246,.8) 45%, rgba(6,182,212,0) 75%);
-      box-shadow:
-        0 0 10px rgba(255,255,255,.7),
-        0 0 18px rgba(139,92,246,.7),
-        0 0 26px rgba(6,182,212,.5);
-      transform:translate(-50%, -50%);
-      z-index:9999;
-      animation:fadeTrail .8s linear forwards;
-    }
-
-    @keyframes fadeTrail{
-      0%{opacity:1; transform:translate(-50%, -50%) scale(1);}
-      100%{opacity:0; transform:translate(-50%, -50%) scale(2.2);}
-    }
-
+    
     @media (max-width:700px){
       h1{font-size:38px;}
       .hero{padding:24px;}
@@ -428,15 +407,6 @@
         alert("Copy did not work. Please copy the text manually.");
       }
     }
-
-    document.addEventListener("mousemove", function(e) {
-      const dot = document.createElement("div");
-      dot.className = "trail-dot";
-      dot.style.left = e.clientX + "px";
-      dot.style.top = e.clientY + "px";
-      document.body.appendChild(dot);
-      setTimeout(() => dot.remove(), 800);
-    });
   </script>
 </body>
 </html>
