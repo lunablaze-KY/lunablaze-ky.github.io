@@ -38,8 +38,8 @@ height:4px;
 background:white;
 border-radius:50%;
 box-shadow:
-0 0 3px rgba(255,255,255,.6),
-0 0 6px rgba(255,255,255,.35);
+0 0 4px rgba(255,255,255,.6),
+0 0 10px rgba(255,255,255,.3);
 animation:twinkle 5s infinite ease-in-out;
 }
 
@@ -48,7 +48,7 @@ animation:twinkle 5s infinite ease-in-out;
 
 @keyframes twinkle{
 0%{opacity:.3;transform:scale(.7);}
-50%{opacity:.9;transform:scale(1.15);}
+50%{opacity:.9;transform:scale(1.2);}
 100%{opacity:.3;transform:scale(.7);}
 }
 
@@ -69,8 +69,8 @@ border-radius:50%;
 background:white;
 box-shadow:
 0 0 4px rgba(255,255,255,.5),
-0 0 8px rgba(255,255,255,.3);
-opacity:.3;
+0 0 10px rgba(255,255,255,.25);
+opacity:.35;
 animation:drift 45s linear infinite;
 }
 
@@ -172,22 +172,45 @@ animation:auroraShift 10s ease-in-out infinite;
 100%{transform:translateX(-50%) scale(1);}
 }
 
-/* titles */
+/* SHIMMER TITLE */
 
 .main-title{
-font-size:64px;
+
+font-size:68px;
 letter-spacing:4px;
 margin-bottom:10px;
+
+background:linear-gradient(
+90deg,
+#ffffff,
+#22d3ee,
+#a78bfa,
+#ff6ec7,
+#ffffff
+);
+
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:titleGlow 8s linear infinite;
+
 text-shadow:
-0 0 6px rgba(255,255,255,.45),
-0 0 14px rgba(255,255,255,.25);
+0 0 10px rgba(255,255,255,.2);
+}
+
+@keyframes titleGlow{
+0%{background-position:0%}
+100%{background-position:300%}
 }
 
 .subtitle{
 font-size:28px;
-opacity:.85;
+opacity:.9;
 margin-bottom:20px;
 }
+
+/* sigil */
 
 .sigil{
 font-size:46px;
@@ -227,16 +250,18 @@ font-size:18px;
 margin-bottom:20px;
 }
 
-/* luna image */
+/* luna avatar */
 
 .luna-avatar{
 width:200px;
 margin:20px auto;
 border-radius:50%;
 border:1px solid rgba(255,255,255,.2);
+
 box-shadow:
 0 0 12px rgba(255,255,255,.15),
 0 0 30px rgba(34,211,238,.15);
+
 animation:float 7s ease-in-out infinite;
 }
 
