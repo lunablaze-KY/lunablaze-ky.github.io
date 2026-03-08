@@ -11,20 +11,16 @@ body{
 margin:0;
 font-family:'Trebuchet MS',sans-serif;
 color:white;
-
-/* 🌈 Rainbow Luna Blaze background */
 background:
 radial-gradient(circle at 20% 20%, #ff6ec7 0%, transparent 40%),
 radial-gradient(circle at 80% 30%, #7c3aed 0%, transparent 40%),
 radial-gradient(circle at 40% 80%, #06b6d4 0%, transparent 40%),
-radial-gradient(circle at 70% 70%, #22d3ee 0%, transparent 45%),
 linear-gradient(135deg,#020617,#1e1b4b,#020617);
-
 min-height:100vh;
 overflow-x:hidden;
 }
 
-/* ✨ Twinkling stars */
+/* stars */
 
 .stars{
 position:fixed;
@@ -63,7 +59,7 @@ animation-duration:6s;
 100%{opacity:.3;transform:scale(.7);}
 }
 
-/* 🪄 Floating sparkles */
+/* floating dust */
 
 .magic-dust{
 position:fixed;
@@ -81,51 +77,32 @@ width:3px;
 height:3px;
 border-radius:50%;
 background:rgba(255,255,255,.8);
-
 box-shadow:
 0 0 4px rgba(255,255,255,.45),
 0 0 8px rgba(255,255,255,.25);
-
 opacity:.35;
-
 animation:drift 45s linear infinite;
 }
 
 @keyframes drift{
-
-0%{
-transform:translate(0px,0px);
-opacity:.25;
+0%{transform:translate(0px,0px);opacity:.25;}
+50%{transform:translate(20px,-600px);opacity:.5;}
+100%{transform:translate(-15px,-1200px);opacity:.25;}
 }
 
-50%{
-transform:translate(20px,-600px);
-opacity:.5;
-}
-
-100%{
-transform:translate(-15px,-1200px);
-opacity:.25;
-}
-
-}
-
-/* 🌠 Shooting stars */
+/* shooting stars */
 
 .shooting-star{
 position:fixed;
 width:120px;
 height:2px;
-
 background:linear-gradient(
 90deg,
 rgba(255,255,255,0),
 rgba(255,255,255,.9),
 rgba(255,255,255,0)
 );
-
 box-shadow:0 0 6px rgba(255,255,255,.5);
-
 opacity:0;
 transform:rotate(-25deg);
 pointer-events:none;
@@ -147,38 +124,44 @@ animation-delay:7s;
 }
 
 @keyframes shoot1{
-
-0%,85%{
-opacity:0;
-transform:translateX(0) translateY(0) rotate(-25deg);
-}
-
+0%,85%{opacity:0;transform:translateX(0) translateY(0) rotate(-25deg);}
 87%{opacity:.8;}
-
-100%{
-opacity:0;
-transform:translateX(1400px) translateY(320px) rotate(-25deg);
-}
-
+100%{opacity:0;transform:translateX(1400px) translateY(320px) rotate(-25deg);}
 }
 
 @keyframes shoot2{
-
-0%,88%{
-opacity:0;
-transform:translateX(0) translateY(0) rotate(-25deg);
-}
-
+0%,88%{opacity:0;transform:translateX(0) translateY(0) rotate(-25deg);}
 90%{opacity:.8;}
-
-100%{
-opacity:0;
-transform:translateX(1500px) translateY(360px) rotate(-25deg);
+100%{opacity:0;transform:translateX(1500px) translateY(360px) rotate(-25deg);}
 }
 
+/* constellation logo */
+
+.constellation-logo{
+width:110px;
+height:110px;
+margin:0 auto 18px auto;
+display:block;
+filter:drop-shadow(0 0 8px rgba(255,255,255,.35));
+animation:constellationPulse 7s ease-in-out infinite;
 }
 
-/* Layout */
+.constellation-logo line{
+stroke:rgba(255,255,255,.65);
+stroke-width:1.6;
+}
+
+.constellation-logo circle{
+fill:rgba(255,255,255,.9);
+}
+
+@keyframes constellationPulse{
+0%{transform:scale(1); opacity:.7;}
+50%{transform:scale(1.06); opacity:1;}
+100%{transform:scale(1); opacity:.7;}
+}
+
+/* layout */
 
 .container{
 max-width:1000px;
@@ -188,8 +171,6 @@ text-align:center;
 position:relative;
 z-index:3;
 }
-
-/* Glass cards */
 
 .hero,.card{
 background:rgba(15,23,42,.65);
@@ -201,41 +182,94 @@ backdrop-filter:blur(10px);
 
 .hero{
 padding:50px;
+position:relative;
+overflow:hidden;
 }
 
-/* Badge */
+/* aurora glow behind title */
+
+.aurora{
+position:absolute;
+top:-40px;
+left:50%;
+transform:translateX(-50%);
+width:520px;
+height:260px;
+background:
+radial-gradient(ellipse at center, rgba(255,110,199,.20) 0%, transparent 45%),
+radial-gradient(ellipse at 30% 40%, rgba(124,58,237,.26) 0%, transparent 48%),
+radial-gradient(ellipse at 70% 55%, rgba(34,211,238,.22) 0%, transparent 50%);
+filter:blur(26px);
+opacity:.9;
+pointer-events:none;
+z-index:0;
+animation:auroraShift 10s ease-in-out infinite;
+}
+
+@keyframes auroraShift{
+0%{transform:translateX(-50%) scale(1);}
+50%{transform:translateX(-50%) scale(1.08) translateY(8px);}
+100%{transform:translateX(-50%) scale(1);}
+}
+
+.hero-content{
+position:relative;
+z-index:1;
+}
 
 .badge{
 display:inline-block;
 padding:6px 12px;
 border:1px solid rgba(255,255,255,.25);
 border-radius:999px;
-
-background:linear-gradient(
-135deg,
-#06b6d4,
-#22d3ee
-);
-
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
 color:#021018;
 font-weight:700;
 font-size:12px;
 text-transform:uppercase;
 letter-spacing:.08em;
 margin-bottom:14px;
-box-shadow:0 0 6px rgba(255,255,255,.35);
 }
-
-/* Headings */
 
 h1{
 font-size:56px;
-margin:0 0 12px;
+margin:0 0 8px;
 letter-spacing:4px;
-
 text-shadow:
 0 0 4px rgba(255,255,255,.45),
 0 0 10px rgba(255,255,255,.22);
+}
+
+.sigil{
+font-size:52px;
+margin-bottom:6px;
+text-shadow:
+0 0 5px rgba(255,255,255,.45),
+0 0 10px rgba(255,255,255,.2);
+animation:sigilPulse 6s infinite ease-in-out;
+}
+
+@keyframes sigilPulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+.motto{
+font-size:20px;
+font-style:italic;
+margin-bottom:25px;
+opacity:.85;
+text-shadow:
+0 0 6px rgba(255,255,255,.4),
+0 0 12px rgba(255,255,255,.18);
+animation:mottoFloat 6s ease-in-out infinite;
+}
+
+@keyframes mottoFloat{
+0%{transform:translateY(0px);opacity:.6;}
+50%{transform:translateY(-8px);opacity:1;}
+100%{transform:translateY(0px);opacity:.6;}
 }
 
 .tagline{
@@ -246,33 +280,69 @@ color:#e0e7ff;
 
 .name{
 font-size:18px;
-margin-bottom:30px;
+margin-bottom:22px;
 }
 
-/* Buttons */
+/* luna image */
+
+.luna-avatar{
+width:200px;
+max-width:68%;
+display:block;
+margin:10px auto 22px auto;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.18);
+box-shadow:
+0 0 10px rgba(255,255,255,.12),
+0 0 24px rgba(34,211,238,.15);
+animation:lunaFloat 7s ease-in-out infinite;
+}
+
+@keyframes lunaFloat{
+0%{transform:translateY(0px) scale(1);}
+50%{transform:translateY(-8px) scale(1.02);}
+100%{transform:translateY(0px) scale(1);}
+}
+
+/* portal button */
 
 .button{
 display:inline-block;
 padding:16px 28px;
 margin:10px;
-
 border-radius:16px;
 text-decoration:none;
 font-weight:bold;
-
-background:linear-gradient(
-135deg,
-#06b6d4,
-#22d3ee
-);
-
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
 color:white;
-
 border:1px solid rgba(255,255,255,.18);
-
-box-shadow:0 0 10px rgba(255,255,255,.12);
-
+box-shadow:
+0 0 8px rgba(34,211,238,.18),
+0 0 0 rgba(34,211,238,0);
 transition:all .2s ease;
+position:relative;
+overflow:hidden;
+}
+
+.button::before{
+content:"";
+position:absolute;
+inset:-2px;
+border-radius:18px;
+background:radial-gradient(circle, rgba(255,255,255,.18) 0%, rgba(34,211,238,.10) 38%, rgba(34,211,238,0) 70%);
+opacity:.7;
+animation:portalPulse 4s ease-in-out infinite;
+}
+
+.button span{
+position:relative;
+z-index:1;
+}
+
+@keyframes portalPulse{
+0%{transform:scale(1); opacity:.35;}
+50%{transform:scale(1.18); opacity:.7;}
+100%{transform:scale(1); opacity:.35;}
 }
 
 .button:hover{
@@ -280,8 +350,6 @@ transform:translateY(-4px);
 background:rgba(6,182,212,.22);
 box-shadow:0 0 14px rgba(255,255,255,.18);
 }
-
-/* Section */
 
 .section{
 margin-top:50px;
@@ -292,37 +360,19 @@ padding:25px;
 margin-top:20px;
 }
 
-/* Footer */
-
 .footer{
 margin-top:60px;
 font-size:14px;
 color:#cbd5f5;
 }
 
-/* Mobile */
-
 @media (max-width:700px){
-
-h1{
-font-size:42px;
-letter-spacing:2px;
-}
-
-.hero{
-padding:32px 24px;
-}
-
-.tagline{
-font-size:18px;
-}
-
-.button{
-display:block;
-margin:12px auto;
-max-width:320px;
-}
-
+h1{font-size:42px; letter-spacing:2px;}
+.hero{padding:32px 24px;}
+.tagline{font-size:18px;}
+.button{display:block; margin:12px auto; max-width:320px;}
+.luna-avatar{width:160px;}
+.aurora{width:360px;height:220px;}
 }
 
 </style>
@@ -331,26 +381,26 @@ max-width:320px;
 <body>
 
 <div class="stars">
-<div class="star small" style="top:10%;left:20%"></div>
-<div class="star medium" style="top:25%;left:80%"></div>
-<div class="star" style="top:40%;left:15%"></div>
-<div class="star medium" style="top:60%;left:70%"></div>
-<div class="star" style="top:75%;left:35%"></div>
-<div class="star small" style="top:15%;left:55%"></div>
-<div class="star medium" style="top:50%;left:50%"></div>
-<div class="star" style="top:85%;left:80%"></div>
+  <div class="star small" style="top:10%;left:20%"></div>
+  <div class="star medium" style="top:25%;left:80%"></div>
+  <div class="star" style="top:40%;left:15%"></div>
+  <div class="star medium" style="top:60%;left:70%"></div>
+  <div class="star" style="top:75%;left:35%"></div>
+  <div class="star small" style="top:15%;left:55%"></div>
+  <div class="star medium" style="top:50%;left:50%"></div>
+  <div class="star" style="top:85%;left:80%"></div>
 </div>
 
 <div class="magic-dust">
-<div class="dust" style="left:10%;animation-delay:0s"></div>
-<div class="dust" style="left:20%;animation-delay:8s"></div>
-<div class="dust" style="left:30%;animation-delay:14s"></div>
-<div class="dust" style="left:40%;animation-delay:5s"></div>
-<div class="dust" style="left:50%;animation-delay:11s"></div>
-<div class="dust" style="left:60%;animation-delay:17s"></div>
-<div class="dust" style="left:70%;animation-delay:3s"></div>
-<div class="dust" style="left:80%;animation-delay:13s"></div>
-<div class="dust" style="left:90%;animation-delay:20s"></div>
+  <div class="dust" style="left:10%;animation-delay:0s"></div>
+  <div class="dust" style="left:20%;animation-delay:8s"></div>
+  <div class="dust" style="left:30%;animation-delay:14s"></div>
+  <div class="dust" style="left:40%;animation-delay:5s"></div>
+  <div class="dust" style="left:50%;animation-delay:11s"></div>
+  <div class="dust" style="left:60%;animation-delay:17s"></div>
+  <div class="dust" style="left:70%;animation-delay:3s"></div>
+  <div class="dust" style="left:80%;animation-delay:13s"></div>
+  <div class="dust" style="left:90%;animation-delay:20s"></div>
 </div>
 
 <div class="shooting-star one"></div>
@@ -358,59 +408,71 @@ max-width:320px;
 
 <div class="container">
 
-<div class="hero">
+  <div class="hero">
+    <div class="aurora"></div>
 
-<div class="badge">Agents of Advocacy</div>
+    <div class="hero-content">
+      <div class="badge">Agents of Advocacy</div>
 
-<h1>LUNA BLAZE</h1>
+      <svg class="constellation-logo" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="20" cy="25" r="2.2"></circle>
+        <circle cx="45" cy="15" r="2.2"></circle>
+        <circle cx="70" cy="28" r="2.2"></circle>
+        <circle cx="30" cy="58" r="2.2"></circle>
+        <circle cx="58" cy="52" r="2.2"></circle>
+        <circle cx="78" cy="70" r="2.2"></circle>
 
-<p class="tagline">
-AI for Advocacy • Amplifying Educator Voices
-</p>
+        <line x1="20" y1="25" x2="45" y2="15"></line>
+        <line x1="45" y1="15" x2="70" y2="28"></line>
+        <line x1="20" y1="25" x2="30" y2="58"></line>
+        <line x1="30" y1="58" x2="58" y2="52"></line>
+        <line x1="58" y1="52" x2="78" y2="70"></line>
+        <line x1="70" y1="28" x2="58" y2="52"></line>
+      </svg>
 
-<p class="name">
-Karrie De Torres • Educator • Organizer • Advocate
-</p>
+      <h1>LUNA BLAZE</h1>
+      <div class="sigil">✦</div>
 
-<a class="button" href="/ai-advocacy">
-Enter the Advocacy Portal
-</a>
+      <img class="luna-avatar" src="luna-blaze.png" alt="Luna Blaze">
 
-<a class="button" href="https://www.nea.org/resource-library/artificial-intelligence-education" target="_blank">
-NEA AI Guidance
-</a>
+      <div class="motto">
+        “Amplifying Voices • Illuminating Truth”
+      </div>
 
-</div>
+      <p class="tagline">
+        AI for Advocacy • Amplifying Educator Voices
+      </p>
 
-<div class="section">
+      <p class="name">
+        Karrie De Torres • Educator • Organizer • Advocate
+      </p>
 
-<div class="card">
+      <a class="button" href="/ai-advocacy"><span>Enter the Advocacy Portal</span></a>
+    </div>
+  </div>
 
-<h2>About This Project</h2>
+  <div class="section">
+    <div class="card">
+      <h2>About This Project</h2>
 
-<p>
-This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
-</p>
+      <p>
+        This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
+      </p>
 
-<p>
-These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
-</p>
+      <p>
+        These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
+      </p>
+    </div>
+  </div>
 
-</div>
-
-</div>
-
-<div class="footer">
-
-<p>© 2025 Karrie De Torres</p>
-
-<p>
-Shared for educator, union, and advocacy learning.
-Please credit when reusing or adapting.
-No commercial use without permission.
-</p>
-
-</div>
+  <div class="footer">
+    <p>© 2025 Karrie De Torres</p>
+    <p>
+      Shared for educator, union, and advocacy learning.
+      Please credit when reusing or adapting.
+      No commercial use without permission.
+    </p>
+  </div>
 
 </div>
 
