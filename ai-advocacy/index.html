@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI for Advocacy | Training Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Advocacy | Training Hub</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:'Trebuchet MS',sans-serif;
-      color:white;
-      background:
-        radial-gradient(circle at 20% 20%, #7c3aed 0%, transparent 40%),
-        radial-gradient(circle at 80% 30%, #06b6d4 0%, transparent 40%),
-        radial-gradient(circle at 40% 80%, #f59e0b 0%, transparent 40%),
-        linear-gradient(135deg,#0f172a,#1e1b4b,#020617);
-      min-height:100vh;
-      overflow-x:hidden;
-    }
+<style>
 
-    .stars{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:1;
-    }
+body{
+margin:0;
+font-family:'Trebuchet MS',sans-serif;
+color:white;
 
-    .star{
-      position:absolute;
-      width:4px;
-      height:4px;
-      background:white;
-      border-radius:50%;
-      box-shadow:
-        0 0 6px white,
-        0 0 12px #8b5cf6,
-        0 0 18px #06b6d4;
-      animation:twinkle 4s infinite ease-in-out;
-    }
+background:
+radial-gradient(circle at 20% 20%, #7c3aed 0%, transparent 40%),
+radial-gradient(circle at 80% 30%, #06b6d4 0%, transparent 40%),
+radial-gradient(circle at 40% 80%, #8b5cf6 0%, transparent 40%),
+linear-gradient(135deg,#0f172a,#1e1b4b,#020617);
 
-    .star.small{
-      width:2px;
-      height:2px;
-      animation-duration:3s;
-    }
+min-height:100vh;
+overflow-x:hidden;
+}
 
-    .star.medium{
-      width:5px;
-      height:5px;
-      animation-duration:5s;
-    }
+/* ---------------- */
+/* SOFT TWINKLING STARS */
+/* ---------------- */
 
-    @keyframes twinkle{
-      0%{opacity:.2;transform:scale(.6);}
-      50%{opacity:1;transform:scale(1.4);}
-      100%{opacity:.2;transform:scale(.6);}
-    }
-/* drifting magic particles */
+.stars{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:1;
+}
+
+.star{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+
+box-shadow:
+0 0 3px rgba(255,255,255,.6),
+0 0 6px rgba(255,255,255,.4);
+
+animation:twinkle 5s infinite ease-in-out;
+}
+
+.star.small{
+width:2px;
+height:2px;
+animation-duration:4s;
+}
+
+.star.medium{
+width:5px;
+height:5px;
+animation-duration:6s;
+}
+
+@keyframes twinkle{
+0%{opacity:.3;transform:scale(.7);}
+50%{opacity:.8;transform:scale(1.2);}
+100%{opacity:.3;transform:scale(.7);}
+}
+
+/* ---------------- */
+/* DRIFTING MAGIC DUST */
+/* ---------------- */
 
 .magic-dust{
 position:fixed;
@@ -73,404 +84,404 @@ position:absolute;
 width:3px;
 height:3px;
 border-radius:50%;
-background:#ffffff;
+background:rgba(255,255,255,.8);
 
 box-shadow:
-0 0 6px #ffffff,
-0 0 10px #06b6d4,
-0 0 18px #8b5cf6;
+0 0 4px rgba(255,255,255,.5),
+0 0 8px rgba(255,255,255,.3);
 
-opacity:.4;
+opacity:.35;
 
-animation:drift 40s linear infinite;
+animation:drift 45s linear infinite;
 }
 
 @keyframes drift{
 
 0%{
-transform:translateY(0px);
-opacity:.2;
+transform:translate(0px,0px);
+opacity:.25;
 }
 
 50%{
-opacity:.6;
+transform:translate(20px,-600px);
+opacity:.5;
 }
 
 100%{
-transform:translateY(-1200px);
-opacity:.2;
+transform:translate(-15px,-1200px);
+opacity:.25;
 }
 
-}    .shooting-star{
-      position:fixed;
-      width:140px;
-      height:2px;
-      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1), rgba(6,182,212,.85));
-      box-shadow:
-        0 0 8px white,
-        0 0 20px #06b6d4;
-      opacity:0;
-      transform:rotate(-25deg);
-      pointer-events:none;
-      z-index:2;
-    }
-
-    .shooting-star.one{
-      top:12%;
-      left:-20%;
-      animation:shoot1 9s linear infinite;
-      animation-delay:1s;
-    }
-
-    .shooting-star.two{
-      top:35%;
-      left:-30%;
-      animation:shoot2 11s linear infinite;
-      animation-delay:5s;
-    }
-
-    @keyframes shoot1{
-      0%, 82% { opacity:0; transform:translateX(0) translateY(0) rotate(-25deg); }
-      84% { opacity:1; }
-      100% { opacity:0; transform:translateX(1400px) translateY(320px) rotate(-25deg); }
-    }
-
-    @keyframes shoot2{
-      0%, 86% { opacity:0; transform:translateX(0) translateY(0) rotate(-25deg); }
-      88% { opacity:1; }
-      100% { opacity:0; transform:translateX(1500px) translateY(360px) rotate(-25deg); }
-    }
-
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:40px 20px 70px;
-      position:relative;
-      z-index:3;
-    }
-
-    .hero, .card, .prompt-box{
-      background:rgba(15,23,42,.68);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:24px;
-      box-shadow:0 0 30px rgba(124,58,237,.35);
-      backdrop-filter:blur(10px);
-    }
-
-    .hero{
-      padding:32px;
-      margin-bottom:28px;
-    }
-
- .badge{
-  display:inline-block;
-  padding:6px 12px;
-  border:2px solid rgba(255,255,255,.25);
-  border-radius:999px;
-  background:linear-gradient(135deg,#06b6d4,#22d3ee);
-  color:#021018;
-  font-weight:800;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:14px;
-  box-shadow:0 0 10px rgba(6,182,212,.6);
-}      font-weight:800;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      margin-bottom:14px;
-    }
-
-    h1{
-      font-size:48px;
-      margin:0 0 10px;
-      letter-spacing:2px;
-      text-shadow:
-        0 0 10px #8b5cf6,
-        0 0 20px #8b5cf6,
-        0 0 40px #06b6d4;
-    }
-
-    h2{
-      margin-top:0;
-      font-size:28px;
-    }
-
-    .subhead{
-      color:#e0e7ff;
-      font-size:18px;
-      margin-bottom:0;
-    }
-
-    .tip, .start, .prompt-section{
-      margin-bottom:28px;
-      padding:24px;
-    }
-
-    .tip{
-      display:inline-block;
-      margin-top:18px;
-      border:1px solid rgba(255,255,255,.2);
-      border-radius:14px;
-      background:rgba(255,255,255,.1);
-      padding:12px 16px;
-    }
-
-    .start{
-      background:rgba(254,240,138,.22);
-    }
-
-    .prompt-section{
-      background:rgba(163,230,53,.18);
-    }
-
-    .prompt-box{
-      padding:16px;
-      margin-top:16px;
-      background:rgba(255,255,255,.08);
-    }
-
-    .prompt-label{
-      font-weight:bold;
-      margin-bottom:8px;
-    }
-
-    .prompt-text{
-      font-family:"Courier New", monospace;
-      font-size:14px;
-      line-height:1.5;
-      white-space:pre-wrap;
-      color:#f8fafc;
-    }
-
-    .copy-btn{
-      margin-top:12px;
-      background:linear-gradient(135deg,#8b5cf6,#06b6d4);
-      color:white;
-      border:1px solid rgba(255,255,255,.25);
-      border-radius:10px;
-      padding:8px 12px;
-      font-weight:bold;
-      cursor:pointer;
-      box-shadow:0 0 12px rgba(6,182,212,.35);
-    }
-
-    .copy-btn:hover{
-      transform:translateY(-1px);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-      gap:22px;
-    }
-
-    .card{
-      padding:20px;
-    }
-
-    .purple { background:rgba(196,181,253,.14); }
-    .orange { background:rgba(253,186,116,.14); }
-    .green { background:rgba(134,239,172,.14); }
-    .blue { background:rgba(147,197,253,.14); }
-    .pink { background:rgba(244,114,182,.14); }
-    .teal { background:rgba(94,234,212,.14); }
-
-    .link-btn, .placeholder{
-      display:block;
-      margin-top:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.22);
-      text-decoration:none;
-    }
-
-    .link-btn{
-      background:rgba(255,255,255,.1);
-      color:white;
-      font-weight:bold;
-      box-shadow:0 0 10px rgba(139,92,246,.15);
-    }
-    
-    .link-btn:hover{
-  background:rgba(6,182,212,.25);
-  box-shadow:0 0 12px rgba(6,182,212,.5);
 }
-    .placeholder{
-      background:rgba(255,255,255,.06);
-      color:#cbd5e1;
-      font-style:italic;
-      border-style:dashed;
-    }
 
-    .home-link{
-      display:inline-block;
-      margin-bottom:20px;
-      color:#fde68a;
-      text-decoration:none;
-      font-weight:bold;
-    }
+/* ---------------- */
+/* SHOOTING STARS */
+/* ---------------- */
 
-    .home-link:hover{
-      text-decoration:underline;
-    }
+.shooting-star{
+position:fixed;
+width:120px;
+height:2px;
 
-    .footer{
-      margin-top:34px;
-      font-size:14px;
-      line-height:1.6;
-      color:#cbd5f5;
-      border-top:1px solid rgba(255,255,255,.15);
-      padding-top:20px;
-    }
-    
-    @media (max-width:700px){
-      h1{font-size:38px;}
-      .hero{padding:24px;}
-      h2{font-size:24px;}
-    }
-  </style>
+background:linear-gradient(
+90deg,
+rgba(255,255,255,0),
+rgba(255,255,255,.9),
+rgba(255,255,255,0)
+);
+
+box-shadow:
+0 0 6px rgba(255,255,255,.6);
+
+opacity:0;
+transform:rotate(-25deg);
+pointer-events:none;
+z-index:2;
+}
+
+.shooting-star.one{
+top:12%;
+left:-20%;
+animation:shoot1 12s linear infinite;
+animation-delay:2s;
+}
+
+.shooting-star.two{
+top:35%;
+left:-30%;
+animation:shoot2 14s linear infinite;
+animation-delay:7s;
+}
+
+@keyframes shoot1{
+
+0%,85%{
+opacity:0;
+transform:translateX(0) translateY(0) rotate(-25deg);
+}
+
+87%{opacity:.8;}
+
+100%{
+opacity:0;
+transform:translateX(1400px) translateY(320px) rotate(-25deg);
+}
+
+}
+
+@keyframes shoot2{
+
+0%,88%{
+opacity:0;
+transform:translateX(0) translateY(0) rotate(-25deg);
+}
+
+90%{opacity:.8;}
+
+100%{
+opacity:0;
+transform:translateX(1500px) translateY(360px) rotate(-25deg);
+}
+
+}
+
+/* ---------------- */
+/* LAYOUT */
+/* ---------------- */
+
+.container{
+max-width:1100px;
+margin:0 auto;
+padding:40px 20px 70px;
+position:relative;
+z-index:3;
+}
+
+/* ---------------- */
+/* GLASS CARDS */
+/* ---------------- */
+
+.hero,.card,.prompt-box{
+background:rgba(15,23,42,.65);
+border:1px solid rgba(255,255,255,.12);
+border-radius:22px;
+
+box-shadow:
+0 0 15px rgba(255,255,255,.05);
+
+backdrop-filter:blur(10px);
+}
+
+.hero{
+padding:32px;
+margin-bottom:28px;
+}
+
+/* ---------------- */
+/* BADGE */
+/* ---------------- */
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+border:1px solid rgba(255,255,255,.25);
+border-radius:999px;
+
+background:linear-gradient(
+135deg,
+#06b6d4,
+#22d3ee
+);
+
+color:#021018;
+font-weight:700;
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.08em;
+margin-bottom:14px;
+
+box-shadow:
+0 0 6px rgba(255,255,255,.4);
+}
+
+/* ---------------- */
+/* HEADINGS */
+/* ---------------- */
+
+h1{
+font-size:48px;
+margin:0 0 10px;
+letter-spacing:2px;
+
+text-shadow:
+0 0 4px rgba(255,255,255,.5),
+0 0 10px rgba(255,255,255,.3);
+}
+
+h2{
+margin-top:0;
+font-size:28px;
+}
+
+.subhead{
+color:#e0e7ff;
+font-size:18px;
+margin-bottom:0;
+}
+
+/* ---------------- */
+/* SECTIONS */
+/* ---------------- */
+
+.tip,.start,.prompt-section{
+margin-bottom:28px;
+padding:24px;
+}
+
+.tip{
+display:inline-block;
+margin-top:18px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:14px;
+background:rgba(255,255,255,.08);
+padding:12px 16px;
+}
+
+.start{
+background:rgba(34,211,238,.1);
+}
+
+.prompt-section{
+background:rgba(34,211,238,.08);
+}
+
+.prompt-box{
+padding:16px;
+margin-top:16px;
+background:rgba(255,255,255,.06);
+}
+
+.prompt-label{
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.prompt-text{
+font-family:"Courier New",monospace;
+font-size:14px;
+line-height:1.5;
+white-space:pre-wrap;
+color:#f8fafc;
+}
+
+/* ---------------- */
+/* BUTTON */
+/* ---------------- */
+
+.copy-btn{
+margin-top:12px;
+
+background:linear-gradient(
+135deg,
+#06b6d4,
+#22d3ee
+);
+
+color:white;
+border:1px solid rgba(255,255,255,.2);
+border-radius:10px;
+padding:8px 12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* ---------------- */
+/* GRID */
+/* ---------------- */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:22px;
+}
+
+.card{
+padding:20px;
+}
+
+/* ---------------- */
+/* LINKS */
+/* ---------------- */
+
+.link-btn,.placeholder{
+display:block;
+margin-top:10px;
+padding:12px 14px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.2);
+text-decoration:none;
+}
+
+.link-btn{
+background:rgba(255,255,255,.08);
+color:white;
+font-weight:bold;
+}
+
+.link-btn:hover{
+background:rgba(6,182,212,.2);
+}
+
+.placeholder{
+background:rgba(255,255,255,.05);
+color:#cbd5e1;
+font-style:italic;
+border-style:dashed;
+}
+
+.home-link{
+display:inline-block;
+margin-bottom:20px;
+color:#7dd3fc;
+text-decoration:none;
+font-weight:bold;
+}
+
+.footer{
+margin-top:34px;
+font-size:14px;
+line-height:1.6;
+color:#cbd5f5;
+border-top:1px solid rgba(255,255,255,.15);
+padding-top:20px;
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="stars">
-    <div class="star small" style="top:10%; left:20%;"></div>
-    <div class="star medium" style="top:25%; left:80%;"></div>
-    <div class="star" style="top:40%; left:15%;"></div>
-    <div class="star medium" style="top:60%; left:70%;"></div>
-    <div class="star" style="top:75%; left:35%;"></div>
-    <div class="star small" style="top:15%; left:55%;"></div>
-    <div class="star medium" style="top:50%; left:50%;"></div>
-    <div class="star" style="top:85%; left:80%;"></div>
-    <div class="star small" style="top:30%; left:40%;"></div>
-    <div class="star medium" style="top:65%; left:10%;"></div>
-    <div class="star" style="top:18%; left:8%;"></div>
-    <div class="star small" style="top:72%; left:88%;"></div>
-  </div>
+<div class="stars">
+
+<div class="star small" style="top:10%;left:20%"></div>
+<div class="star medium" style="top:25%;left:80%"></div>
+<div class="star" style="top:40%;left:15%"></div>
+<div class="star medium" style="top:60%;left:70%"></div>
+<div class="star" style="top:75%;left:35%"></div>
+<div class="star small" style="top:15%;left:55%"></div>
+<div class="star medium" style="top:50%;left:50%"></div>
+<div class="star" style="top:85%;left:80%"></div>
+
+</div>
 
 <div class="magic-dust">
 
-    <div class="dust" style="left:10%; animation-delay:0s;"></div>
-    <div class="dust" style="left:20%; animation-delay:6s;"></div>
-    <div class="dust" style="left:30%; animation-delay:12s;"></div>
-    <div class="dust" style="left:40%; animation-delay:3s;"></div>
-    <div class="dust" style="left:50%; animation-delay:9s;"></div>
-    <div class="dust" style="left:60%; animation-delay:15s;"></div>
-    <div class="dust" style="left:70%; animation-delay:5s;"></div>
-    <div class="dust" style="left:80%; animation-delay:11s;"></div>
-    <div class="dust" style="left:90%; animation-delay:18s;"></div>
+<div class="dust" style="left:10%;animation-delay:0s"></div>
+<div class="dust" style="left:20%;animation-delay:8s"></div>
+<div class="dust" style="left:30%;animation-delay:14s"></div>
+<div class="dust" style="left:40%;animation-delay:5s"></div>
+<div class="dust" style="left:50%;animation-delay:11s"></div>
+<div class="dust" style="left:60%;animation-delay:17s"></div>
+<div class="dust" style="left:70%;animation-delay:3s"></div>
+<div class="dust" style="left:80%;animation-delay:13s"></div>
+<div class="dust" style="left:90%;animation-delay:20s"></div>
 
-</div>  
-  
-  <div class="shooting-star one"></div>
-  <div class="shooting-star two"></div>
+</div>
 
-  <div class="container">
-    <a class="home-link" href="/">← Back to Luna Blaze Home</a>
+<div class="shooting-star one"></div>
+<div class="shooting-star two"></div>
 
-    <section class="hero">
-      <div class="badge">Agents of Advocacy</div>
-      <h1>AI for Advocacy Training Hub</h1>
-      <p class="subhead">
-        Tools, prompts, and real examples to help educators organize, communicate, and build collective power.
-      </p>
-      <div class="tip">
-        <strong>Tip for Participants:</strong> Bookmark this page so you can return to the tools and resources after the session.
-      </div>
-    </section>
+<div class="container">
 
-    <section class="hero start">
-      <h2>🚀 Start Here</h2>
-      <ol>
-        <li>Open the presentation deck</li>
-        <li>Join the Padlet reflection activity</li>
-        <li>Use the prompt bank and toolkit resources</li>
-      </ol>
-    </section>
+<a class="home-link" href="/">← Back to Luna Blaze Home</a>
 
-    <section class="hero prompt-section">
-      <h2>⚡ Try This Prompt Now</h2>
-      <p>Copy a prompt below and paste it into ChatGPT to generate something useful for your union or advocacy work.</p>
+<section class="hero">
 
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Member Communication</div>
-        <div class="prompt-text" id="prompt1">Write a clear, supportive message to educators about an important school or union issue. Use a professional but approachable tone. Include a short explanation of why the issue matters, one concrete next step people can take, and a closing that encourages collective action.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt1', this)">Copy Prompt</button>
-      </div>
+<div class="badge">Agents of Advocacy</div>
 
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Contract or Policy Summary</div>
-        <div class="prompt-text" id="prompt2">I am a union leader. Summarize the most important points from this contract or policy document in plain language educators can understand. Highlight any changes, rights, responsibilities, and potential concerns. Then suggest three questions members might ask.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt2', this)">Copy Prompt</button>
-      </div>
-    </section>
+<h1>AI for Advocacy Training Hub</h1>
 
-    <div class="grid">
-      <section class="card purple">
-        <h2>🧰 Session Materials</h2>
-        <a class="link-btn" href="https://www.canva.com/design/DAG9hNCHsGA/hexMU4VVfZlU1ioQvNxjJA/view?utm_content=DAG9hNCHsGA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf645702557" target="_blank" rel="noopener noreferrer">🔗 Presentation Deck</a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1Hsd7nnfKzTZ4Gg5xhmfS5NDhpJzaeYH-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🔗 AI Advocacy Resource Handout</a>
-        <a class="link-btn" href="https://www.canva.com/design/DAGuAbMDdec/Ddw2vqm9BwBT-GNYgUe1zQ/view?utm_content=DAGuAbMDdec&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" rel="noopener noreferrer">🔗 AI Prompt Bank, Notes & Reflection Handouts</a>
-      </section>
+<p class="subhead">
+Tools, prompts, and real examples to help educators organize, communicate, and build collective power.
+</p>
 
-      <section class="card orange">
-        <h2>🎯 Interactive Activities</h2>
-        <a class="link-btn" href="https://padlet.com/karriedetorres/ai-training-reflection-hyrhjujsgcn8tl2" target="_blank" rel="noopener noreferrer">🔗 Padlet Reflection Wall</a>
-        <div class="placeholder">Canva Whiteboard Collaboration (link coming soon)</div>
-        <div class="placeholder">Live Poll (link coming soon)</div>
-      </section>
+<div class="tip">
+<strong>Tip:</strong> Bookmark this page so you can return to the tools after the session.
+</div>
 
-      <section class="card green">
-        <h2>🤖 AI Tools From Today's Training</h2>
-        <a class="link-btn" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">🔗 ChatGPT</a>
-        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener noreferrer">🔗 Claude</a>
-        <a class="link-btn" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">🔗 Gemini</a>
-        <a class="link-btn" href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer">🔗 NotebookLM</a>
-        <a class="link-btn" href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🔗 Canva</a>
-        <a class="link-btn" href="https://gamma.app" target="_blank" rel="noopener noreferrer">🔗 Gamma</a>
-        <a class="link-btn" href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer">🔗 Perplexity</a>
-      </section>
+</section>
 
-      <section class="card blue">
-        <h2>📣 Stay Connected</h2>
-        <div class="placeholder">Session Feedback / Evaluation (link coming soon)</div>
-        <a class="link-btn" href="mailto:karrie.detorres@jcta.org">🔗 Email the Presenter</a>
-      </section>
+</div>
 
-      <section class="card pink">
-        <h2>✨ Real Examples Made with AI</h2>
-        <a class="link-btn" href="https://www.canva.com/design/DAHDTmS8YLE/gK1BFx7253i_tcTjMDfcEQ/view?utm_content=DAHDTmS8YLE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4effd29358" target="_blank" rel="noopener noreferrer">🔗 AI in Action Advocacy Graphic</a>
-        <a class="link-btn" href="https://claude.ai/public/artifacts/c73d81cf-ab07-4fd6-9181-7617e5db05d1" target="_blank" rel="noopener noreferrer">🔗 AI-Guided Member Conversation App</a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1R9NhTeHYuLyDQJF5_m0B4YHcGKtY76U6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🔗 Pre-K for All Policy Brief</a>
-      </section>
+<script>
 
-      <section class="card teal">
-        <h2>📚 Advocacy & AI Resources</h2>
-        <a class="link-btn" href="https://www.nea.org/resource-library/artificial-intelligence-education" target="_blank" rel="noopener noreferrer">🔗 NEA Artificial Intelligence in Education Guidance</a>
-      </section>
-    </div>
+async function copyPrompt(id,button){
 
-    <div class="footer">
-      <p><strong>Reuse Note:</strong> You are welcome to use, share, and adapt these materials for educator, union, and advocacy purposes with credit to Karrie De Torres. Please do not sell, repost as your own, or use for commercial training without permission.</p>
-      <p>© 2025 Karrie De Torres</p>
-    </div>
-  </div>
+const text=document.getElementById(id).innerText;
 
-  <script>
-    async function copyPrompt(id, button) {
-      const text = document.getElementById(id).innerText;
-      try {
-        await navigator.clipboard.writeText(text);
-        const original = button.innerText;
-        button.innerText = "Copied!";
-        setTimeout(() => {
-          button.innerText = original;
-        }, 1500);
-      } catch (e) {
-        alert("Copy did not work. Please copy the text manually.");
-      }
-    }
-  </script>
+try{
+
+await navigator.clipboard.writeText(text);
+
+const original=button.innerText;
+
+button.innerText="Copied!";
+
+setTimeout(()=>{
+
+button.innerText=original;
+
+},1500);
+
+}catch(e){
+
+alert("Copy failed. Please copy manually.");
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
