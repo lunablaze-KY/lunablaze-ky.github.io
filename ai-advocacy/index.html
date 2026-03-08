@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI for Advocacy Training Hub</title>
+  <title>AI for Advocacy | Karrie De Torres</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -139,9 +139,13 @@
   <div class="container">
     <section class="hero">
       <div class="badge">Agents of Advocacy</div>
-      <h1>AI for Advocacy Training Hub</h1>
-      <p>
-        This page contains all materials, tools, and activities from today's session.
+   <h1>AI for Advocacy</h1>
+
+<p><strong>Karrie De Torres • Educator • Advocate • Organizer</strong></p>
+
+<p>
+Tools, prompts, and real examples to help educators organize, communicate, and build collective power.
+</p>
         Use the sections below to access resources, participate in activities, and
         explore AI tools that support advocacy work.
       </p>
@@ -232,7 +236,11 @@
       const text = document.getElementById(id).innerText;
       try {
         await navigator.clipboard.writeText(text);
-        alert("Prompt copied to clipboard.");
+       const btn = event.target;
+btn.innerText = "Copied!";
+setTimeout(() => {
+  btn.innerText = "Copy Prompt";
+}, 2000);
       } catch (e) {
         alert("Copy did not work. Please copy the text manually.");
       }
