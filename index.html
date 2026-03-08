@@ -1,280 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AI for Advocacy | Karrie De Torres</title>
+<title>Karrie De Torres | Advocacy</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
 
-  <style>
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #fffbea, #ffffff, #f5f3ff);
-      color: #0f172a;
-    }
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:linear-gradient(135deg,#fdf2f8,#ffffff,#f5f3ff);
+color:#0f172a;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 20px 60px;
-    }
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+}
 
-    .hero, .card, .prompt-box {
-      background: white;
-      border: 3px solid #0f172a;
-      border-radius: 20px;
-      box-shadow: 6px 6px 0 #0f172a;
-    }
+.hero{
+border:3px solid #0f172a;
+border-radius:20px;
+padding:40px;
+background:white;
+box-shadow:6px 6px 0 #0f172a;
+}
 
-    .hero {
-      padding: 28px;
-      margin-bottom: 28px;
-      background: linear-gradient(90deg, #e9d5ff, #fef3c7, #d1fae5);
-    }
+h1{
+font-size:46px;
+margin-bottom:10px;
+}
 
-    .badge {
-      display: inline-block;
-      padding: 6px 12px;
-      border: 2px solid #0f172a;
-      border-radius: 999px;
-      background: #fde047;
-      font-weight: 800;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: 14px;
-    }
+.tagline{
+font-size:20px;
+margin-bottom:25px;
+}
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 42px;
-    }
+.button{
+display:inline-block;
+padding:14px 22px;
+margin:10px;
+border:2px solid #0f172a;
+border-radius:12px;
+text-decoration:none;
+font-weight:bold;
+background:white;
+color:#0f172a;
+}
 
-    h2 {
-      margin-top: 0;
-      font-size: 28px;
-    }
+.button:hover{
+background:#fde68a;
+}
 
-    .subhead {
-      margin-top: 8px;
-      font-weight: 600;
-    }
+.section{
+margin-top:40px;
+}
 
-    .tip, .start, .prompt-section {
-      margin-bottom: 28px;
-      padding: 22px;
-    }
+.card{
+border:2px solid #0f172a;
+border-radius:16px;
+padding:20px;
+margin-top:20px;
+background:white;
+}
 
-    .start {
-      background: #fef08a;
-    }
+.footer{
+margin-top:50px;
+font-size:14px;
+color:#334155;
+}
 
-    .prompt-section {
-      background: #d9f99d;
-    }
-
-    .tip {
-      display: inline-block;
-      margin-top: 16px;
-      border: 2px solid #0f172a;
-      border-radius: 14px;
-      background: white;
-      padding: 12px 16px;
-    }
-
-    .prompt-box {
-      padding: 16px;
-      margin-top: 16px;
-    }
-
-    .prompt-label {
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .prompt-text {
-      font-family: "Courier New", monospace;
-      font-size: 14px;
-      line-height: 1.5;
-      white-space: pre-wrap;
-    }
-
-    .copy-btn {
-      margin-top: 12px;
-      background: #fde047;
-      border: 2px solid #0f172a;
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      padding: 20px;
-    }
-
-    .purple { background: #ede9fe; }
-    .orange { background: #ffedd5; }
-    .green { background: #dcfce7; }
-    .blue { background: #dbeafe; }
-    .pink { background: #fce7f3; }
-    .teal { background: #ccfbf1; }
-
-    .link-btn, .placeholder {
-      display: block;
-      margin-top: 10px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 2px solid #0f172a;
-      text-decoration: none;
-    }
-
-    .link-btn {
-      background: white;
-      color: #0f172a;
-      font-weight: 700;
-    }
-
-    .link-btn:hover {
-      background: #fde68a;
-    }
-
-    .placeholder {
-      background: white;
-      color: #64748b;
-      font-style: italic;
-      border-style: dashed;
-    }
-
-    .footer {
-      margin-top: 34px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #334155;
-      border-top: 2px solid #cbd5e1;
-      padding-top: 20px;
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="container">
 
-    <section class="hero">
-      <div class="badge">Agents of Advocacy</div>
-      <h1>AI for Advocacy Training Hub</h1>
-      <p class="subhead">Karrie De Torres • Educator • Advocate • Organizer</p>
-      <p>
-        This page contains all materials, tools, and activities from today's session.
-        Use the sections below to access resources, participate in activities, and
-        explore AI tools that support advocacy work.
-      </p>
+<div class="container">
 
-      <div class="tip">
-        <strong>Tip for Participants:</strong> Bookmark this page so you can return to the tools and resources after the session.
-      </div>
-    </section>
+<div class="hero">
 
-    <section class="hero start">
-      <h2>🚀 Start Here</h2>
-      <ol>
-        <li>Open the presentation deck</li>
-        <li>Join the Padlet reflection activity</li>
-        <li>Use the prompt bank and toolkit resources</li>
-      </ol>
-    </section>
+<h1>AI for Advocacy</h1>
 
-    <section class="hero prompt-section">
-      <h2>⚡ Try This Prompt Now</h2>
-      <p>Copy a prompt below and paste it into ChatGPT to generate something useful for your union or advocacy work.</p>
+<p class="tagline">
+Helping educators use AI to organize, communicate, and build collective power.
+</p>
 
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Member Communication</div>
-        <div class="prompt-text" id="prompt1">Write a clear, supportive message to educators about an important school or union issue. Use a professional but approachable tone. Include a short explanation of why the issue matters, one concrete next step people can take, and a closing that encourages collective action.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt1')">Copy Prompt</button>
-      </div>
+<p><strong>Karrie De Torres</strong></p>
 
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Contract or Policy Summary</div>
-        <div class="prompt-text" id="prompt2">I am a union leader. Summarize the most important points from this contract or policy document in plain language educators can understand. Highlight any changes, rights, responsibilities, and potential concerns. Then suggest three questions members might ask.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt2')">Copy Prompt</button>
-      </div>
-    </section>
+<a class="button" href="/ai-advocacy">Open the Training Hub</a>
 
-    <div class="grid">
+<a class="button" href="https://www.nea.org/resource-library/artificial-intelligence-education" target="_blank">
+NEA AI Guidance
+</a>
 
-      <section class="card purple">
-        <h2>🧰 Session Materials</h2>
-        <a class="link-btn" href="https://www.canva.com/design/DAG9hNCHsGA/hexMU4VVfZlU1ioQvNxjJA/view?utm_content=DAG9hNCHsGA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf645702557" target="_blank" rel="noopener noreferrer">🔗 Presentation Deck</a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1Hsd7nnfKzTZ4Gg5xhmfS5NDhpJzaeYH-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🔗 AI Advocacy Resource Handout</a>
-        <a class="link-btn" href="https://www.canva.com/design/DAGuAbMDdec/Ddw2vqm9BwBT-GNYgUe1zQ/view?utm_content=DAGuAbMDdec&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" rel="noopener noreferrer">🔗 AI Prompt Bank, Notes & Reflection Handouts</a>
-      </section>
+</div>
 
-      <section class="card orange">
-        <h2>🎯 Interactive Activities</h2>
-        <a class="link-btn" href="https://padlet.com/karriedetorres/ai-training-reflection-hyrhjujsgcn8tl2" target="_blank" rel="noopener noreferrer">🔗 Padlet Reflection Wall</a>
-        <div class="placeholder">Canva Whiteboard Collaboration (link coming soon)</div>
-        <div class="placeholder">Live Poll (link coming soon)</div>
-      </section>
 
-      <section class="card green">
-        <h2>🤖 AI Tools From Today's Training</h2>
-        <a class="link-btn" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">🔗 ChatGPT</a>
-        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener noreferrer">🔗 Claude</a>
-        <a class="link-btn" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">🔗 Gemini</a>
-        <a class="link-btn" href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer">🔗 NotebookLM</a>
-        <a class="link-btn" href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🔗 Canva</a>
-        <a class="link-btn" href="https://gamma.app" target="_blank" rel="noopener noreferrer">🔗 Gamma</a>
-        <a class="link-btn" href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer">🔗 Perplexity</a>
-      </section>
+<div class="section">
 
-      <section class="card blue">
-        <h2>📣 Stay Connected</h2>
-        <div class="placeholder">Session Feedback / Evaluation (link coming soon)</div>
-        <a class="link-btn" href="mailto:karrie.detorres@jcta.org">🔗 Email the Presenter</a>
-      </section>
+<div class="card">
 
-      <section class="card pink">
-        <h2>✨ Real Examples Made with AI</h2>
-        <a class="link-btn" href="https://www.canva.com/design/DAHDTmS8YLE/gK1BFx7253i_tcTjMDfcEQ/view?utm_content=DAHDTmS8YLE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4effd29358" target="_blank" rel="noopener noreferrer">🔗 AI in Action Advocacy Graphic</a>
-        <a class="link-btn" href="https://claude.ai/public/artifacts/c73d81cf-ab07-4fd6-9181-7617e5db05d1" target="_blank" rel="noopener noreferrer">🔗 AI-Guided Member Conversation App</a>
-        <a class="link-btn" href="https://drive.google.com/file/d/1R9NhTeHYuLyDQJF5_m0B4YHcGKtY76U6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🔗 Pre-K for All Policy Brief</a>
-      </section>
+<h2>About This Project</h2>
 
-      <section class="card teal">
-        <h2>📚 Advocacy & AI Resources</h2>
-        <a class="link-btn" href="https://www.nea.org/resource-library/artificial-intelligence-education" target="_blank" rel="noopener noreferrer">🔗 NEA Artificial Intelligence in Education Guidance</a>
-      </section>
+<p>
+This site collects tools, prompts, and real examples showing how artificial
+intelligence can support educator advocacy, organizing, and member communication.
+</p>
 
-    </div>
+<p>
+The resources were developed for educator trainings and advocacy workshops
+focused on responsible and practical uses of AI.
+</p>
 
-    <div class="footer">
-      <p><strong>Reuse Note:</strong> You are welcome to use, share, and adapt these materials for educator, union, and advocacy purposes with credit to Karrie De Torres. Please do not sell, repost as your own, or use for commercial training without permission.</p>
-      <p>© 2025 Karrie De Torres</p>
-    </div>
+</div>
 
-  </div>
+</div>
 
-  <script>
-    async function copyPrompt(id) {
-      const text = document.getElementById(id).innerText;
-      try {
-        await navigator.clipboard.writeText(text);
-        alert("Prompt copied to clipboard.");
-      } catch (e) {
-        alert("Copy did not work. Please copy the text manually.");
-      }
-    }
-  </script>
+
+<div class="footer">
+
+<p>
+© 2025 Karrie De Torres
+</p>
+
+<p>
+Shared for educator, union, and advocacy learning.
+Please credit when reusing or adapting. No commercial use without permission.
+</p>
+
+</div>
+
+</div>
+
 </body>
 </html>
