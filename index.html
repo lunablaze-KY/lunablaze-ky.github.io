@@ -264,6 +264,12 @@ border:1px solid rgba(255,255,255,.2);
 position:relative;
 overflow:hidden;
 box-sizing:border-box;
+box-shadow:0 10px 25px rgba(0,0,0,.22);
+transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.button:hover{
+transform:translateY(-2px);
 }
 
 .button.primary{
@@ -282,6 +288,7 @@ border-radius:18px;
 background:
 radial-gradient(circle, rgba(255,255,255,.2) 0%, rgba(34,211,238,.15) 40%, transparent 70%);
 animation:portal 4s ease-in-out infinite;
+pointer-events:none;
 }
 
 @keyframes portal{
@@ -322,44 +329,111 @@ display:inline-block;
 100%{opacity:.5;transform:scale(.9);}
 }
 
-/* silly robot */
+/* tiny silly bot */
 .luna-bot{
 position:fixed;
 bottom:10px;
-left:-120px;
-z-index:5;
-opacity:.96;
-animation:botRun 22s linear infinite;
-filter:
-drop-shadow(0 0 6px rgba(34,211,238,.6))
-drop-shadow(0 0 12px rgba(167,139,250,.4));
+left:-90px;
+z-index:6;
 pointer-events:none;
+animation:botRun 24s linear infinite;
+filter:drop-shadow(0 0 8px rgba(34,211,238,.35));
 }
 
-.bot-body{
-display:flex;
-align-items:flex-end;
-gap:2px;
-font-size:24px;
-animation:botBounce 0.8s ease-in-out infinite;
-transform-origin:center bottom;
+.bot{
+position:relative;
+width:58px;
+height:34px;
+animation:botBounce 0.9s ease-in-out infinite;
 }
 
 .bot-head{
-display:inline-block;
-animation:botWobble 0.7s ease-in-out infinite;
+position:absolute;
+top:0;
+left:8px;
+width:34px;
+height:22px;
+border-radius:10px;
+background:linear-gradient(180deg,#cbd5e1,#94a3b8);
+border:1px solid rgba(255,255,255,.35);
+box-shadow:0 0 10px rgba(34,211,238,.18);
+animation:botWobble 0.8s ease-in-out infinite;
+}
+
+.bot-head::before,
+.bot-head::after{
+content:"";
+position:absolute;
+top:8px;
+width:5px;
+height:5px;
+border-radius:50%;
+background:#22d3ee;
+box-shadow:0 0 8px rgba(34,211,238,.8);
+}
+
+.bot-head::before{ left:9px; }
+.bot-head::after{ right:9px; }
+
+.bot-antenna{
+position:absolute;
+top:-6px;
+left:18px;
+width:2px;
+height:8px;
+background:#cbd5e1;
+}
+
+.bot-antenna::after{
+content:"";
+position:absolute;
+top:-4px;
+left:-3px;
+width:8px;
+height:8px;
+border-radius:50%;
+background:#ff6ec7;
+box-shadow:0 0 8px rgba(255,110,199,.8);
+}
+
+.bot-body{
+position:absolute;
+top:16px;
+left:0;
+width:46px;
+height:14px;
+border-radius:10px 12px 8px 8px;
+background:linear-gradient(180deg,#64748b,#475569);
+border:1px solid rgba(255,255,255,.2);
 }
 
 .bot-wheel{
-display:inline-block;
-font-size:18px;
-margin-left:-2px;
-animation:wheelSpin 0.5s linear infinite;
+position:absolute;
+bottom:-2px;
+width:10px;
+height:10px;
+border-radius:50%;
+background:#1e293b;
+border:2px solid #f59e0b;
+animation:wheelSpin 0.6s linear infinite;
+}
+
+.bot-wheel.left{ left:8px; }
+.bot-wheel.right{ right:10px; }
+
+.bot-spark{
+position:absolute;
+left:-10px;
+top:20px;
+font-size:10px;
+color:#22d3ee;
+opacity:0;
+animation:botSpark 2.8s ease-in-out infinite;
 }
 
 @keyframes botRun{
 0%{transform:translateX(0);}
-100%{transform:translateX(130vw);}
+100%{transform:translateX(125vw);}
 }
 
 @keyframes botBounce{
@@ -375,6 +449,12 @@ animation:wheelSpin 0.5s linear infinite;
 @keyframes wheelSpin{
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
+}
+
+@keyframes botSpark{
+0%,70%,100%{opacity:0; transform:translateX(0) scale(.8);}
+80%{opacity:1; transform:translateX(-4px) scale(1.1);}
+90%{opacity:.6; transform:translateX(-8px) scale(.9);}
 }
 
 /* footer */
@@ -459,12 +539,25 @@ top:-10px;
 bottom:6px;
 }
 
+.bot{
+width:50px;
+height:30px;
+}
+
+.bot-head{
+width:30px;
+height:20px;
+left:7px;
+}
+
 .bot-body{
-font-size:20px;
+width:40px;
+height:12px;
 }
 
 .bot-wheel{
-font-size:15px;
+width:9px;
+height:9px;
 }
 }
 </style>
@@ -473,18 +566,18 @@ font-size:15px;
 <body>
 
 <div class="stars">
-<div class="star small" style="top:10%;left:20%"></div>
-<div class="star medium" style="top:25%;left:80%"></div>
-<div class="star" style="top:40%;left:15%"></div>
-<div class="star medium" style="top:60%;left:70%"></div>
-<div class="star" style="top:75%;left:35%"></div>
+  <div class="star small" style="top:10%;left:20%"></div>
+  <div class="star medium" style="top:25%;left:80%"></div>
+  <div class="star" style="top:40%;left:15%"></div>
+  <div class="star medium" style="top:60%;left:70%"></div>
+  <div class="star" style="top:75%;left:35%"></div>
 </div>
 
 <div class="magic-dust">
-<div class="dust" style="left:20%"></div>
-<div class="dust" style="left:40%"></div>
-<div class="dust" style="left:60%"></div>
-<div class="dust" style="left:80%"></div>
+  <div class="dust" style="left:20%"></div>
+  <div class="dust" style="left:40%"></div>
+  <div class="dust" style="left:60%"></div>
+  <div class="dust" style="left:80%"></div>
 </div>
 
 <div class="shooting-star one"></div>
@@ -492,68 +585,73 @@ font-size:15px;
 
 <div class="container">
 
-<div class="hero">
-<div class="aurora"></div>
+  <div class="hero">
+    <div class="aurora"></div>
 
-<h1 class="main-title">Agents of Advocacy</h1>
+    <h1 class="main-title">Agents of Advocacy</h1>
 
-<div class="subtitle">Luna Blaze</div>
+    <div class="subtitle">Luna Blaze</div>
 
-<div class="sigil">✦</div>
+    <div class="sigil">✦</div>
 
-<img class="luna-avatar" src="luna-blaze.png" alt="Luna Blaze">
+    <img class="luna-avatar" src="luna-blaze.png" alt="Luna Blaze">
 
-<div class="motto">
-“Amplifying Voices • Illuminating Truth”
-</div>
+    <div class="motto">
+      “Amplifying Voices • Illuminating Truth”
+    </div>
 
-<p class="tagline">
-AI for Advocacy • Amplifying Educator Voices
-</p>
+    <p class="tagline">
+      AI for Advocacy • Amplifying Educator Voices
+    </p>
 
-<p class="name">
-Karrie De Torres • Educator • Organizer • Advocate
-</p>
+    <p class="name">
+      Karrie De Torres • Educator • Organizer • Advocate
+    </p>
 
-<div class="button-group">
-<a class="button primary" href="ai-advocacy">Enter the Advocacy Portal</a>
-<a class="button secondary" href="command-center.html">Open the Command Center</a>
-</div>
-</div>
+    <div class="button-group">
+      <a class="button primary" href="ai-advocacy">Enter the Advocacy Portal</a>
+      <a class="button secondary" href="command-center.html">Open the Command Center</a>
+    </div>
+  </div>
 
-<div class="section">
-<div class="card">
-<h2>About This Project</h2>
+  <div class="section">
+    <div class="card">
+      <h2>About This Project</h2>
 
-<p>
-This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
-</p>
+      <p>
+        This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
+      </p>
 
-<p>
-These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
-</p>
+      <p>
+        These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
+      </p>
+    </div>
+  </div>
 
-</div>
-</div>
+  <div class="footer">
+    <div style="max-width:760px;margin:0 auto 14px auto;padding:14px 18px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.05);color:#e9d5ff;line-height:1.6;">
+      <span class="luna-sparkle">✦</span>
+      Cosmic Disclosure: Parts of this website were created with the assistance of artificial intelligence.
+      Luna Blaze supervised the robots, kept them mostly well-behaved, and reviewed the content before it went live.
+      <span class="luna-sparkle">✦</span>
+    </div>
 
-<div class="footer">
-<div style="max-width:760px;margin:0 auto 14px auto;padding:14px 18px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.05);color:#e9d5ff;line-height:1.6;">
-<span class="luna-sparkle">✦</span>
-Cosmic Disclosure: Parts of this website were created with the assistance of artificial intelligence.
-Luna Blaze supervised the robots, kept them mostly well-behaved, and reviewed the content before it went live.
-<span class="luna-sparkle">✦</span>
-</div>
-
-<div>
-© 2025 Karrie De Torres
-</div>
-</div>
+    <div>
+      © 2025 Karrie De Torres
+    </div>
+  </div>
 
 </div>
 
 <div class="luna-bot" aria-hidden="true">
-  <div class="bot-body">
-    <span class="bot-head">🤖</span><span class="bot-wheel">🛞</span><span class="bot-wheel">🛞</span>
+  <div class="bot">
+    <div class="bot-head">
+      <div class="bot-antenna"></div>
+    </div>
+    <div class="bot-body"></div>
+    <div class="bot-wheel left"></div>
+    <div class="bot-wheel right"></div>
+    <div class="bot-spark">✦</div>
   </div>
 </div>
 
