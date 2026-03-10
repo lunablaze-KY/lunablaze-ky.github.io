@@ -6,24 +6,20 @@
 <title>Agents of Advocacy | Luna Blaze</title>
 
 <style>
-
 body{
 margin:0;
 font-family:'Trebuchet MS',sans-serif;
 color:white;
-
 background:
 radial-gradient(circle at 20% 20%, #ff6ec7 0%, transparent 40%),
 radial-gradient(circle at 80% 30%, #7c3aed 0%, transparent 40%),
 radial-gradient(circle at 40% 80%, #06b6d4 0%, transparent 40%),
 linear-gradient(135deg,#020617,#1e1b4b,#020617);
-
 min-height:100vh;
 overflow-x:hidden;
 }
 
 /* stars */
-
 .stars{
 position:fixed;
 inset:0;
@@ -53,7 +49,6 @@ animation:twinkle 5s infinite ease-in-out;
 }
 
 /* magical dust */
-
 .magic-dust{
 position:fixed;
 inset:0;
@@ -81,19 +76,16 @@ animation:drift 45s linear infinite;
 }
 
 /* shooting stars */
-
 .shooting-star{
 position:fixed;
 width:120px;
 height:2px;
-
 background:linear-gradient(
 90deg,
 rgba(255,255,255,0),
 rgba(255,255,255,.9),
 rgba(255,255,255,0)
 );
-
 opacity:0;
 transform:rotate(-25deg);
 pointer-events:none;
@@ -125,7 +117,6 @@ animation:shoot2 14s linear infinite;
 }
 
 /* layout */
-
 .container{
 max-width:1000px;
 margin:auto;
@@ -145,10 +136,10 @@ backdrop-filter:blur(10px);
 .hero{
 padding:60px;
 position:relative;
+overflow:hidden;
 }
 
 /* aurora glow */
-
 .aurora{
 position:absolute;
 top:-40px;
@@ -156,12 +147,10 @@ left:50%;
 transform:translateX(-50%);
 width:520px;
 height:260px;
-
 background:
 radial-gradient(ellipse at center, rgba(255,110,199,.25) 0%, transparent 45%),
 radial-gradient(ellipse at 30% 40%, rgba(124,58,237,.25) 0%, transparent 48%),
 radial-gradient(ellipse at 70% 55%, rgba(34,211,238,.22) 0%, transparent 50%);
-
 filter:blur(26px);
 animation:auroraShift 10s ease-in-out infinite;
 }
@@ -172,14 +161,14 @@ animation:auroraShift 10s ease-in-out infinite;
 100%{transform:translateX(-50%) scale(1);}
 }
 
-/* SHIMMER TITLE */
-
+/* title */
 .main-title{
-
 font-size:68px;
-letter-spacing:4px;
-margin-bottom:10px;
-
+line-height:1.05;
+letter-spacing:2px;
+margin:0 0 12px 0;
+word-break:break-word;
+overflow-wrap:anywhere;
 background:linear-gradient(
 90deg,
 #ffffff,
@@ -188,15 +177,11 @@ background:linear-gradient(
 #ff6ec7,
 #ffffff
 );
-
 background-size:300%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
 animation:titleGlow 8s linear infinite;
-
-text-shadow:
-0 0 10px rgba(255,255,255,.2);
+text-shadow:0 0 10px rgba(255,255,255,.2);
 }
 
 @keyframes titleGlow{
@@ -210,8 +195,6 @@ opacity:.9;
 margin-bottom:20px;
 }
 
-/* sigil */
-
 .sigil{
 font-size:46px;
 margin-bottom:10px;
@@ -223,8 +206,6 @@ animation:pulse 6s infinite ease-in-out;
 50%{transform:scale(1.1);}
 100%{transform:scale(1);}
 }
-
-/* motto */
 
 .motto{
 font-size:20px;
@@ -251,30 +232,26 @@ margin-bottom:20px;
 }
 
 /* luna avatar */
-
 .luna-avatar{
 width:200px;
+max-width:70vw;
 margin:20px auto;
 border-radius:50%;
 border:1px solid rgba(255,255,255,.2);
-
 box-shadow:
 0 0 12px rgba(255,255,255,.15),
 0 0 30px rgba(34,211,238,.15);
-
 animation:float 7s ease-in-out infinite;
+display:block;
 }
 
-/* button group */
-
+/* buttons */
 .button-group{
 display:flex;
 justify-content:center;
 gap:16px;
 flex-wrap:wrap;
 }
-
-/* portal buttons */
 
 .button{
 display:inline-block;
@@ -286,6 +263,7 @@ color:white;
 border:1px solid rgba(255,255,255,.2);
 position:relative;
 overflow:hidden;
+box-sizing:border-box;
 }
 
 .button.primary{
@@ -301,10 +279,8 @@ content:"";
 position:absolute;
 inset:-2px;
 border-radius:18px;
-
 background:
 radial-gradient(circle, rgba(255,255,255,.2) 0%, rgba(34,211,238,.15) 40%, transparent 70%);
-
 animation:portal 4s ease-in-out infinite;
 }
 
@@ -323,8 +299,11 @@ padding:25px;
 margin-top:20px;
 }
 
-/* disclaimer sparkles */
+.card p{
+line-height:1.7;
+}
 
+/* disclaimer sparkles */
 .luna-sparkle{
 font-size:18px;
 margin:0 6px;
@@ -334,6 +313,7 @@ text-shadow:
 0 0 12px rgba(167,139,250,.5),
 0 0 20px rgba(255,110,199,.4);
 animation:lunaTwinkle 4s ease-in-out infinite;
+display:inline-block;
 }
 
 @keyframes lunaTwinkle{
@@ -342,29 +322,62 @@ animation:lunaTwinkle 4s ease-in-out infinite;
 100%{opacity:.5;transform:scale(.9);}
 }
 
-/* tiny robot */
-
+/* silly robot */
 .luna-bot{
 position:fixed;
-bottom:12px;
-left:-80px;
-font-size:26px;
+bottom:10px;
+left:-120px;
 z-index:5;
-opacity:.9;
-animation:botRun 20s linear infinite;
-
+opacity:.96;
+animation:botRun 22s linear infinite;
 filter:
 drop-shadow(0 0 6px rgba(34,211,238,.6))
 drop-shadow(0 0 12px rgba(167,139,250,.4));
+pointer-events:none;
+}
+
+.bot-body{
+display:flex;
+align-items:flex-end;
+gap:2px;
+font-size:24px;
+animation:botBounce 0.8s ease-in-out infinite;
+transform-origin:center bottom;
+}
+
+.bot-head{
+display:inline-block;
+animation:botWobble 0.7s ease-in-out infinite;
+}
+
+.bot-wheel{
+display:inline-block;
+font-size:18px;
+margin-left:-2px;
+animation:wheelSpin 0.5s linear infinite;
 }
 
 @keyframes botRun{
 0%{transform:translateX(0);}
-100%{transform:translateX(120vw);}
+100%{transform:translateX(130vw);}
+}
+
+@keyframes botBounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-3px);}
+}
+
+@keyframes botWobble{
+0%,100%{transform:rotate(-8deg);}
+50%{transform:rotate(8deg);}
+}
+
+@keyframes wheelSpin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
 /* footer */
-
 .footer{
 margin-top:60px;
 font-size:14px;
@@ -372,6 +385,88 @@ color:#cbd5f5;
 text-align:center;
 }
 
+/* mobile fixes */
+@media (max-width:700px){
+.container{
+padding:40px 14px 70px 14px;
+}
+
+.hero{
+padding:34px 18px;
+border-radius:18px;
+}
+
+.card{
+padding:20px 16px;
+border-radius:18px;
+}
+
+.main-title{
+font-size:clamp(40px, 13vw, 56px);
+line-height:1.02;
+letter-spacing:1px;
+margin-bottom:8px;
+}
+
+.subtitle{
+font-size:20px;
+margin-bottom:14px;
+}
+
+.sigil{
+font-size:34px;
+margin-bottom:8px;
+}
+
+.motto{
+font-size:17px;
+margin-bottom:18px;
+}
+
+.tagline{
+font-size:18px;
+margin-bottom:14px;
+}
+
+.name{
+font-size:15px;
+line-height:1.5;
+margin-bottom:18px;
+}
+
+.button-group{
+gap:12px;
+}
+
+.button{
+width:100%;
+max-width:320px;
+padding:14px 20px;
+font-size:16px;
+}
+
+.footer{
+font-size:13px;
+}
+
+.aurora{
+width:360px;
+height:190px;
+top:-10px;
+}
+
+.luna-bot{
+bottom:6px;
+}
+
+.bot-body{
+font-size:20px;
+}
+
+.bot-wheel{
+font-size:15px;
+}
+}
 </style>
 </head>
 
@@ -398,7 +493,6 @@ text-align:center;
 <div class="container">
 
 <div class="hero">
-
 <div class="aurora"></div>
 
 <h1 class="main-title">Agents of Advocacy</h1>
@@ -407,7 +501,7 @@ text-align:center;
 
 <div class="sigil">✦</div>
 
-<img class="luna-avatar" src="luna-blaze.png">
+<img class="luna-avatar" src="luna-blaze.png" alt="Luna Blaze">
 
 <div class="motto">
 “Amplifying Voices • Illuminating Truth”
@@ -422,23 +516,13 @@ Karrie De Torres • Educator • Organizer • Advocate
 </p>
 
 <div class="button-group">
-
-<a class="button primary" href="ai-advocacy">
-Enter the Advocacy Portal
-</a>
-
-<a class="button secondary" href="command-center.html">
-Open the Command Center
-</a>
-
+<a class="button primary" href="ai-advocacy">Enter the Advocacy Portal</a>
+<a class="button secondary" href="command-center.html">Open the Command Center</a>
 </div>
-
 </div>
 
 <div class="section">
-
 <div class="card">
-
 <h2>About This Project</h2>
 
 <p>
@@ -450,31 +534,28 @@ These resources were developed for educator trainings focused on responsible and
 </p>
 
 </div>
-
 </div>
 
 <div class="footer">
-
 <div style="max-width:760px;margin:0 auto 14px auto;padding:14px 18px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.05);color:#e9d5ff;line-height:1.6;">
-
 <span class="luna-sparkle">✦</span>
-
-Cosmic Disclosure: Parts of this website were created with the assistance of artificial intelligence.  
+Cosmic Disclosure: Parts of this website were created with the assistance of artificial intelligence.
 Luna Blaze supervised the robots, kept them mostly well-behaved, and reviewed the content before it went live.
-
 <span class="luna-sparkle">✦</span>
-
 </div>
 
 <div>
 © 2025 Karrie De Torres
 </div>
-
 </div>
 
 </div>
 
-<div class="luna-bot">🤖</div>
+<div class="luna-bot" aria-hidden="true">
+  <div class="bot-body">
+    <span class="bot-head">🤖</span><span class="bot-wheel">🛞</span><span class="bot-wheel">🛞</span>
+  </div>
+</div>
 
 </body>
 </html>
