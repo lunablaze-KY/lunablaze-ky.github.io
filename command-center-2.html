@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advocacy Command Center | Luna Blaze</title>
+
+<style>
+body{
+margin:0;
+font-family:'Trebuchet MS',sans-serif;
+color:white;
+background:
+radial-gradient(circle at 20% 20%, #ff6ec7 0%, transparent 40%),
+radial-gradient(circle at 80% 30%, #7c3aed 0%, transparent 40%),
+radial-gradient(circle at 40% 80%, #06b6d4 0%, transparent 40%),
+linear-gradient(135deg,#020617,#1e1b4b,#020617);
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* stars */
+.stars{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:1;
+}
+
+.star{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+box-shadow:
+0 0 4px rgba(255,255,255,.6),
+0 0 10px rgba(255,255,255,.3);
+animation:twinkle 5s infinite ease-in-out;
+}
+
+.star.small{width:2px;height:2px;}
+.star.medium{width:5px;height:5px;}
+
+@keyframes twinkle{
+0%{opacity:.3;transform:scale(.7);}
+50%{opacity:.9;transform:scale(1.2);}
+100%{opacity:.3;transform:scale(.7);}
+}
+
+/* magical dust */
+.magic-dust{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:0;
+}
+
+.dust{
+position:absolute;
+width:3px;
+height:3px;
+border-radius:50%;
+background:white;
+box-shadow:
+0 0 4px rgba(255,255,255,.5),
+0 0 10px rgba(255,255,255,.25);
+opacity:.35;
+animation:drift 45s linear infinite;
+}
+
+@keyframes drift{
+0%{transform:translate(0,0);}
+50%{transform:translate(20px,-600px);}
+100%{transform:translate(-15px,-1200px);}
+}
+
+/* shooting stars */
+.shooting-star{
+position:fixed;
+width:120px;
+height:2px;
+background:linear-gradient(
+90deg,
+rgba(255,255,255,0),
+rgba(255,255,255,.9),
+rgba(255,255,255,0)
+);
+opacity:0;
+transform:rotate(-25deg);
+pointer-events:none;
+z-index:2;
+}
+
+.shooting-star.one{
+top:12%;
+left:-20%;
+animation:shoot1 12s linear infinite;
+}
+
+.shooting-star.two{
+top:35%;
+left:-30%;
+animation:shoot2 14s linear infinite;
+}
+
+@keyframes shoot1{
+0%,85%{opacity:0;}
+87%{opacity:.8;}
+100%{opacity:0;transform:translateX(1400px) translateY(320px) rotate(-25deg);}
+}
+
+@keyframes shoot2{
+0%,88%{opacity:0;}
+90%{opacity:.8;}
+100%{opacity:0;transform:translateX(1500px) translateY(360px) rotate(-25deg);}
+}
+
+/* main layout */
+.container{
+max-width:980px;
+margin:auto;
+padding:56px 16px 80px 16px;
+position:relative;
+z-index:3;
+}
+
+.hero,.panel,.tool-card,.toast{
+background:rgba(15,23,42,.65);
+border:1px solid rgba(255,255,255,.12);
+border-radius:22px;
+backdrop-filter:blur(10px);
+}
+
+.hero{
+padding:42px 24px;
+position:relative;
+overflow:hidden;
+text-align:center;
+}
+
+.aurora{
+position:absolute;
+top:-40px;
+left:50%;
+transform:translateX(-50%);
+width:560px;
+height:240px;
+background:
+radial-gradient(ellipse at center, rgba(255,110,199,.25) 0%, transparent 45%),
+radial-gradient(ellipse at 30% 40%, rgba(124,58,237,.25) 0%, transparent 48%),
+radial-gradient(ellipse at 70% 55%, rgba(34,211,238,.22) 0%, transparent 50%);
+filter:blur(26px);
+animation:auroraShift 10s ease-in-out infinite;
+}
+
+@keyframes auroraShift{
+0%{transform:translateX(-50%) scale(1);}
+50%{transform:translateX(-50%) scale(1.08);}
+100%{transform:translateX(-50%) scale(1);}
+}
+
+.main-title{
+font-size:56px;
+line-height:1.05;
+letter-spacing:2px;
+margin:0 0 10px 0;
+word-break:break-word;
+overflow-wrap:anywhere;
+background:linear-gradient(
+90deg,
+#ffffff,
+#22d3ee,
+#a78bfa,
+#ff6ec7,
+#ffffff
+);
+background-size:300%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:titleGlow 8s linear infinite;
+text-shadow:0 0 10px rgba(255,255,255,.2);
+position:relative;
+z-index:2;
+}
+
+@keyframes titleGlow{
+0%{background-position:0%}
+100%{background-position:300%}
+}
+
+.subtitle{
+font-size:24px;
+opacity:.95;
+margin-bottom:14px;
+position:relative;
+z-index:2;
+}
+
+.motto{
+font-size:18px;
+font-style:italic;
+margin:0 auto 18px auto;
+max-width:760px;
+color:#e9d5ff;
+position:relative;
+z-index:2;
+}
+
+.hero-text{
+max-width:800px;
+margin:0 auto;
+font-size:17px;
+line-height:1.7;
+color:#e0e7ff;
+position:relative;
+z-index:2;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:24px;
+position:relative;
+z-index:2;
+}
+
+.button{
+display:inline-block;
+padding:14px 22px;
+border-radius:16px;
+text-decoration:none;
+font-weight:bold;
+color:white;
+border:1px solid rgba(255,255,255,.2);
+position:relative;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.22);
+transition:transform .25s ease;
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
+}
+
+.button:hover{
+transform:translateY(-2px);
+}
+
+.button.secondary{
+background:linear-gradient(135deg,#7c3aed,#ff6ec7);
+}
+
+.button::before{
+content:"";
+position:absolute;
+inset:-2px;
+border-radius:18px;
+background:
+radial-gradient(circle, rgba(255,255,255,.2) 0%, rgba(34,211,238,.15) 40%, transparent 70%);
+animation:portal 4s ease-in-out infinite;
+pointer-events:none;
+}
+
+@keyframes portal{
+0%{transform:scale(1);opacity:.4;}
+50%{transform:scale(1.2);opacity:.7;}
+100%{transform:scale(1);opacity:.4;}
+}
+
+.section{
+margin-top:24px;
+}
+
+.panel{
+padding:24px 22px;
+}
+
+.panel h2{
+margin:0 0 12px 0;
+font-size:30px;
+}
+
+.panel p, .panel li{
+color:#e2e8f0;
+line-height:1.7;
+}
+
+.guide-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:20px;
+}
+
+.order-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px;
+margin-top:18px;
+}
+
+.step-card{
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.1);
+border-radius:18px;
+padding:18px;
+text-align:left;
+}
+
+.step-number{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:38px;
+height:38px;
+border-radius:50%;
+background:linear-gradient(135deg,#22d3ee,#7c3aed);
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.step-card h3{
+margin:0 0 8px 0;
+font-size:19px;
+}
+
+.step-card p{
+margin:0;
+font-size:14px;
+line-height:1.6;
+color:#e2e8f0;
+}
+
+.tip-list{
+margin:0;
+padding-left:20px;
+}
+
+.tip-list li{
+margin-bottom:10px;
+}
+
+.tool-list{
+display:flex;
+flex-direction:column;
+gap:18px;
+margin-top:22px;
+}
+
+.tool-card{
+padding:22px;
+}
+
+.tool-header{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:14px;
+margin-bottom:10px;
+}
+
+.tool-title-wrap{
+display:flex;
+gap:14px;
+align-items:flex-start;
+}
+
+.emoji{
+font-size:30px;
+line-height:1;
+}
+
+.tool-card h3{
+margin:0;
+font-size:28px;
+}
+
+.tool-subtitle{
+margin-top:4px;
+font-size:15px;
+color:#c4b5fd;
+}
+
+.tool-card p{
+margin:10px 0 0 0;
+color:#e2e8f0;
+line-height:1.7;
+}
+
+.toggle-btn{
+padding:10px 14px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+font-size:13px;
+color:white;
+background:linear-gradient(135deg,#7c3aed,#ff6ec7);
+white-space:nowrap;
+}
+
+.tool-content{
+display:none;
+}
+
+.tool-content.open{
+display:block;
+}
+
+.prompt-box{
+margin-top:14px;
+background:rgba(2,6,23,.82);
+border:1px solid rgba(255,255,255,.1);
+border-radius:16px;
+padding:16px;
+font-size:13px;
+line-height:1.6;
+white-space:pre-wrap;
+overflow:auto;
+max-height:340px;
+color:#e5e7eb;
+}
+
+.action-row{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:14px;
+}
+
+.copy-btn, .chatgpt-btn{
+padding:12px 16px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+color:white;
+text-decoration:none;
+display:inline-block;
+}
+
+.copy-btn{
+background:linear-gradient(135deg,#7c3aed,#ff6ec7);
+}
+
+.chatgpt-btn{
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
+}
+
+.footer-card{
+margin-top:24px;
+padding:18px 20px;
+text-align:center;
+color:#cbd5f5;
+font-size:14px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:18px;
+}
+
+.toast{
+position:fixed;
+right:18px;
+bottom:18px;
+padding:14px 18px;
+font-size:14px;
+z-index:50;
+opacity:0;
+transform:translateY(12px);
+transition:all .3s ease;
+pointer-events:none;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media (max-width:900px){
+.guide-grid{
+grid-template-columns:1fr;
+}
+
+.order-grid{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media (max-width:700px){
+.container{
+padding:40px 14px 70px 14px;
+}
+
+.hero{
+padding:34px 18px;
+border-radius:18px;
+}
+
+.panel,.tool-card{
+padding:18px 16px;
+border-radius:18px;
+}
+
+.main-title{
+font-size:clamp(38px, 11vw, 50px);
+line-height:1.02;
+letter-spacing:1px;
+}
+
+.subtitle{
+font-size:20px;
+}
+
+.motto{
+font-size:16px;
+}
+
+.hero-text{
+font-size:15px;
+}
+
+.button{
+width:100%;
+max-width:320px;
+text-align:center;
+}
+
+.order-grid{
+grid-template-columns:1fr;
+}
+
+.tool-card h3{
+font-size:23px;
+}
+
+.tool-header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.emoji{
+font-size:26px;
+}
+
+.action-row{
+flex-direction:column;
+}
+
+.copy-btn, .chatgpt-btn, .toggle-btn{
+width:100%;
+box-sizing:border-box;
+text-align:center;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars">
+  <div class="star small" style="top:10%;left:20%"></div>
+  <div class="star medium" style="top:25%;left:80%"></div>
+  <div class="star" style="top:40%;left:15%"></div>
+  <div class="star medium" style="top:60%;left:70%"></div>
+  <div class="star" style="top:75%;left:35%"></div>
+  <div class="star small" style="top:18%;left:58%"></div>
+  <div class="star" style="top:82%;left:84%"></div>
+</div>
+
+<div class="magic-dust">
+  <div class="dust" style="left:20%"></div>
+  <div class="dust" style="left:40%"></div>
+  <div class="dust" style="left:60%"></div>
+  <div class="dust" style="left:80%"></div>
+</div>
+
+<div class="shooting-star one"></div>
+<div class="shooting-star two"></div>
+
+<div id="toast" class="toast panel">Prompt copied ✨</div>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="aurora"></div>
+    <h1 class="main-title">Advocacy Command Center</h1>
+    <div class="subtitle">Luna Blaze</div>
+    <div class="motto">“Detect • Translate • Respond • Organize”</div>
+
+    <p class="hero-text">
+      This page is built to help educators, advocates, organizers, and union leaders move from information overload to clear action. Use the prompts below to monitor policy, explain complex documents, and create rapid advocacy responses.
+    </p>
+
+    <div class="hero-buttons">
+      <a class="button" href="index.html">Back to Portal</a>
+      <a class="button secondary" href="#prompts">Jump to Prompts</a>
+    </div>
+  </div>
+
+  <div class="section panel">
+    <h2>Suggested Order</h2>
+    <p>
+      If you are not sure where to start, use the prompts in this order. This creates a simple advocacy workflow: first catch what changed, then understand it, then build your response, then organize people around it.
+    </p>
+
+    <div class="order-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Monitor</h3>
+        <p>Start with a policy, legislative, budget, or news prompt to identify what is happening.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Translate</h3>
+        <p>Use the Policy Translator to turn dense language into clear explanations for educators and families.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Respond</h3>
+        <p>Use the Rapid Response Generator or Event Briefing to create talking points, testimony, emails, or public comments.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>Organize</h3>
+        <p>Adapt the results for your audience, then share them with members, families, or community partners.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section panel">
+    <h2>How to Use and Customize These Prompts</h2>
+
+    <div class="guide-grid">
+      <div>
+        <p>
+          These prompts are templates. Copy one, paste it into ChatGPT or another AI tool, and then replace the bracketed placeholder text with your own location, district, bill language, board agenda item, or issue.
+        </p>
+
+        <ul class="tip-list">
+          <li><strong>Replace the location:</strong> Change things like <code>[STATE NAME]</code> or <code>[DISTRICT NAME]</code> to your own state, city, district, or region.</li>
+          <li><strong>Paste the actual text:</strong> For translator or response prompts, paste in the bill summary, agenda item, or article you want analyzed.</li>
+          <li><strong>Add your issue area:</strong> If you care most about ECE, multilingual learners, planning time, or special education, add that directly into the prompt.</li>
+          <li><strong>Adjust the audience:</strong> Ask for a version for families, union members, media, legislators, or school board testimony depending on what you need.</li>
+        </ul>
+      </div>
+
+      <div>
+        <p>
+          The strongest results usually come from doing a quick second pass after the first answer. Ask the AI to make the output shorter, clearer, more parent-friendly, more data-driven, or more specific to your local situation.
+        </p>
+
+        <ul class="tip-list">
+          <li><strong>For beginners:</strong> Start with the Universal Policy Monitor and the Policy Translator.</li>
+          <li><strong>For organizers:</strong> Use the Budget Watchdog, Event Briefing, and Rapid Response Generator together.</li>
+          <li><strong>For local advocacy:</strong> Add your school board, superintendent, district, or state legislature by name.</li>
+          <li><strong>Always verify:</strong> Double-check dates, bill numbers, vote status, and public claims before sharing anything publicly.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="prompts">
+    <div class="tool-list">
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">📡</div>
+            <div>
+              <h3>Universal Policy Monitor</h3>
+              <div class="tool-subtitle">Track legislation, budgets, board actions, and news in one place</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool1', this)">Show Prompt</button>
+        </div>
+        <p>Use this when you want one broad monitoring prompt that scans multiple education policy signals at once.</p>
+        <div class="tool-content" id="tool1">
+          <div class="prompt-box" id="prompt1">Search for new updates related to public education policy in [STATE, DISTRICT, OR REGION].
+
+Scan the following sources when possible:
+- state legislature and education committee activity
+- state department of education releases
+- school district announcements and budget documents
+- school board agendas and meeting materials
+- credible local news coverage
+
+Focus on developments involving:
+- early childhood education (ECE, preschool)
+- special education and IDEA compliance
+- multilingual or immersion programs
+- teacher planning time and workload
+- staffing levels and educator shortages
+- class sizes, ratios, and caseload limits
+- therapist and support staff roles
+- school funding or budget reductions
+- curriculum, accountability, or assessment policy
+- union or labor issues affecting educators
+
+Notify me only about meaningful new developments.
+
+For each update provide:
+1. A short summary of the change
+2. The source or policy action
+3. Why it matters for educators, students, or public schools
+4. Potential advocacy implications</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt1')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">🏛️</div>
+            <div>
+              <h3>State Legislative Tracker</h3>
+              <div class="tool-subtitle">Monitor bills, hearings, votes, amendments, and fiscal notes</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool2', this)">Show Prompt</button>
+        </div>
+        <p>Use this when you want to focus only on education activity in your state legislature.</p>
+        <div class="tool-content" id="tool2">
+          <div class="prompt-box" id="prompt2">Search for updates in the [STATE NAME] Legislature related to education policy.
+
+Focus especially on topics including:
+- early childhood education
+- special education
+- multilingual or immersion programs
+- teacher planning time
+- staffing ratios or caseload limits
+- union or labor issues affecting educators
+- school funding or budget changes
+- curriculum or assessment policy
+
+Notify me about:
+- new bills introduced
+- status changes
+- committee hearings
+- votes
+- amendments
+- fiscal notes or cost estimates
+
+Provide a concise summary and explain the potential impact for educators, students, and public schools.</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt2')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">💼</div>
+            <div>
+              <h3>Budget & Staffing Watchdog</h3>
+              <div class="tool-subtitle">Catch cuts, restructures, and workload shifts early</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool3', this)">Show Prompt</button>
+        </div>
+        <p>Use this when you need to watch district budgets, staffing changes, service models, or program reductions.</p>
+        <div class="tool-content" id="tool3">
+          <div class="prompt-box" id="prompt3">Search for updates from [SCHOOL DISTRICT NAME], the local school board, and the state department of education.
+
+Monitor documents, board agendas, and reports for changes related to:
+- district budgets
+- staffing levels
+- program restructuring
+- class size or ratio changes
+- caseload limits
+- service delivery models
+- program reductions or eliminations
+- early childhood education programs
+- special education services
+- multilingual or immersion programs
+- teacher planning time or workload
+
+Notify me only about meaningful developments.
+
+Provide a concise summary and highlight potential impacts on educators, students, and families.</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt3')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">🧩</div>
+            <div>
+              <h3>ECE & Special Education Monitor</h3>
+              <div class="tool-subtitle">Follow staffing, services, compliance, waivers, and supports</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool4', this)">Show Prompt</button>
+        </div>
+        <p>Use this when your focus is early childhood, preschool, special education staffing, therapists, or inclusive service delivery.</p>
+        <div class="tool-content" id="tool4">
+          <div class="prompt-box" id="prompt4">Search for updates from [DISTRICT NAME] and local school board materials related to:
+- early childhood education programs
+- preschool services
+- special education staffing
+- occupational therapists, physical therapists, speech therapists
+- school psychologists and diagnosticians
+- implementation or instructional coaches
+- caseload changes
+- class size or ratio adjustments
+- waivers
+- inclusive or blended classroom models
+- service delivery changes
+- evaluation timelines and compliance
+
+Notify me only about meaningful new developments.
+
+Provide a concise summary explaining the potential impact on student services and educator workload.</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt4')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">🔎</div>
+            <div>
+              <h3>Policy Translator</h3>
+              <div class="tool-subtitle">Convert dense policy language into plain English</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool5', this)">Show Prompt</button>
+        </div>
+        <p>Use this after you identify a bill, article, or agenda item and need to explain it clearly.</p>
+        <div class="tool-content" id="tool5">
+          <div class="prompt-box" id="prompt5">You are assisting an educator or community advocate in explaining an education policy update.
+
+Policy Text:
+[PASTE BILL LANGUAGE, POLICY DOCUMENT, OR BOARD AGENDA ITEM]
+
+Translate the information into plain language.
+
+Provide:
+1. A simple summary
+2. What the policy changes
+3. Why it matters for students, educators, families, and school resources
+4. 3-5 key questions people may ask
+5. A short explanation suitable for a parent newsletter or school communication</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt5')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">⚡</div>
+            <div>
+              <h3>Rapid Response Generator</h3>
+              <div class="tool-subtitle">Turn updates into talking points, testimony, emails, and posts</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool6', this)">Show Prompt</button>
+        </div>
+        <p>Use this when a policy change just dropped and you need an advocacy response fast.</p>
+        <div class="tool-content" id="tool6">
+          <div class="prompt-box" id="prompt6">You are assisting an education advocate responding to a new policy development.
+
+Based on the policy update below, generate a rapid advocacy response.
+
+Policy Update:
+[PASTE NEWS, BILL UPDATE, OR BOARD AGENDA ITEM HERE]
+
+Create the following:
+1. Plain-language summary
+2. Key concerns for students, educators, public schools, and equity
+3. 4-6 talking points
+4. A short public comment statement
+5. A concise email to a policymaker
+6. A short social media post encouraging constructive engagement</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt6')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">🗓️</div>
+            <div>
+              <h3>Advocacy Event Briefing</h3>
+              <div class="tool-subtitle">Prepare for hearings, board meetings, and policy discussions</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool7', this)">Show Prompt</button>
+        </div>
+        <p>Use this when you have an advocacy day, committee meeting, or board meeting coming up and need a briefing.</p>
+        <div class="tool-content" id="tool7">
+          <div class="prompt-box" id="prompt7">Search for upcoming education-related legislative hearings, committee meetings, school board meetings, or policy discussions in [STATE OR DISTRICT].
+
+Look ahead 14 days.
+
+Prepare a briefing that includes:
+- relevant legislators or board members
+- bills or policies being discussed
+- committees involved
+- key education topics
+
+Provide suggested talking points educators, parents, or advocates could use when contacting policymakers or speaking at meetings.</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt7')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">📰</div>
+            <div>
+              <h3>Education News Monitor</h3>
+              <div class="tool-subtitle">Track media narratives shaping public opinion</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool8', this)">Show Prompt</button>
+        </div>
+        <p>Use this when you want to watch how local or state education issues are being covered in the news.</p>
+        <div class="tool-content" id="tool8">
+          <div class="prompt-box" id="prompt8">Search for recent news coverage about education in [STATE OR DISTRICT].
+
+Focus on stories related to:
+- early childhood education
+- special education
+- teacher shortages or staffing issues
+- school funding
+- curriculum debates
+- multilingual education
+- school choice or voucher policies
+- educator working conditions
+
+Provide a short summary of key stories and explain why they may matter for educators or education advocates.</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt8')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-wrap">
+            <div class="emoji">🤖</div>
+            <div>
+              <h3>AI Tools Monitor</h3>
+              <div class="tool-subtitle">Discover new AI tools for organizing, research, and classroom support</div>
+            </div>
+          </div>
+          <button class="toggle-btn" onclick="togglePrompt('tool9', this)">Show Prompt</button>
+        </div>
+        <p>Use this when you want to keep your educator advocacy toolkit current as new tools emerge.</p>
+        <div class="tool-content" id="tool9">
+          <div class="prompt-box" id="prompt9">Search for new or updated AI tools useful for educators, unions, and education advocates.
+
+Focus on tools for:
+- research and policy analysis
+- advocacy and organizing campaigns
+- content creation and communication
+- document summarization
+- classroom planning and instruction
+
+Provide a short summary of noteworthy tools and explain how they could support educator work or advocacy efforts.</div>
+          <div class="action-row">
+            <button class="copy-btn" onclick="copyPrompt('prompt9')">Copy Prompt</button>
+            <a class="chatgpt-btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Open ChatGPT</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-card">
+    AI can help you move faster, but it cannot replace human judgment, community trust, or relationship-based organizing. Always verify details before posting, emailing, or speaking publicly.
+  </div>
+
+</div>
+
+<script>
+function copyPrompt(id){
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 1800);
+  }).catch(() => {
+    alert('Copy failed. Please copy the prompt manually.');
+  });
+}
+
+function togglePrompt(id, button){
+  const panel = document.getElementById(id);
+  panel.classList.toggle('open');
+  button.textContent = panel.classList.contains('open') ? 'Hide Prompt' : 'Show Prompt';
+}
+</script>
+
+</body>
+</html>
