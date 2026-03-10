@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,16 +117,15 @@ animation:shoot2 14s linear infinite;
 100%{opacity:0;transform:translateX(1500px) translateY(360px) rotate(-25deg);}
 }
 
-/* layout */
 .container{
-max-width:1200px;
+max-width:980px;
 margin:auto;
-padding:70px 20px;
+padding:56px 16px 80px 16px;
 position:relative;
 z-index:3;
 }
 
-.hero,.card,.info-panel,.footer-card,.toast{
+.hero,.panel,.tool-card,.toast{
 background:rgba(15,23,42,.65);
 border:1px solid rgba(255,255,255,.12);
 border-radius:22px;
@@ -133,20 +133,19 @@ backdrop-filter:blur(10px);
 }
 
 .hero{
-padding:50px 32px;
+padding:42px 24px;
 position:relative;
-text-align:center;
 overflow:hidden;
+text-align:center;
 }
 
-/* aurora glow */
 .aurora{
 position:absolute;
 top:-40px;
 left:50%;
 transform:translateX(-50%);
 width:560px;
-height:260px;
+height:240px;
 background:
 radial-gradient(ellipse at center, rgba(255,110,199,.25) 0%, transparent 45%),
 radial-gradient(ellipse at 30% 40%, rgba(124,58,237,.25) 0%, transparent 48%),
@@ -162,9 +161,12 @@ animation:auroraShift 10s ease-in-out infinite;
 }
 
 .main-title{
-font-size:58px;
-letter-spacing:3px;
+font-size:56px;
+line-height:1.05;
+letter-spacing:2px;
 margin:0 0 10px 0;
+word-break:break-word;
+overflow-wrap:anywhere;
 background:linear-gradient(
 90deg,
 #ffffff,
@@ -178,8 +180,6 @@ background-size:300%;
 -webkit-text-fill-color:transparent;
 animation:titleGlow 8s linear infinite;
 text-shadow:0 0 10px rgba(255,255,255,.2);
-position:relative;
-z-index:2;
 }
 
 @keyframes titleGlow{
@@ -191,50 +191,35 @@ z-index:2;
 font-size:24px;
 opacity:.95;
 margin-bottom:14px;
-position:relative;
-z-index:2;
 }
 
 .motto{
 font-size:18px;
 font-style:italic;
-margin:0 auto 24px auto;
-max-width:800px;
+margin:0 auto 18px auto;
+max-width:760px;
 color:#e9d5ff;
-animation:float 6s ease-in-out infinite;
-position:relative;
-z-index:2;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-8px);}
-100%{transform:translateY(0);}
 }
 
 .hero-text{
-max-width:860px;
+max-width:800px;
 margin:0 auto;
-font-size:18px;
+font-size:17px;
 line-height:1.7;
 color:#e0e7ff;
-position:relative;
-z-index:2;
 }
 
 .hero-buttons{
 display:flex;
 justify-content:center;
-gap:16px;
+gap:14px;
 flex-wrap:wrap;
-margin-top:28px;
-position:relative;
-z-index:2;
+margin-top:24px;
 }
 
 .button{
 display:inline-block;
-padding:15px 24px;
+padding:14px 22px;
 border-radius:16px;
 text-decoration:none;
 font-weight:bold;
@@ -242,23 +227,12 @@ color:white;
 border:1px solid rgba(255,255,255,.2);
 position:relative;
 overflow:hidden;
-transition:transform .25s ease, box-shadow .25s ease;
 box-shadow:0 10px 25px rgba(0,0,0,.22);
+transition:transform .25s ease;
 }
 
 .button:hover{
 transform:translateY(-2px);
-}
-
-.button::before{
-content:"";
-position:absolute;
-inset:-2px;
-border-radius:18px;
-background:
-radial-gradient(circle, rgba(255,255,255,.2) 0%, rgba(34,211,238,.15) 40%, transparent 70%);
-animation:portal 4s ease-in-out infinite;
-pointer-events:none;
 }
 
 .button.primary{
@@ -269,81 +243,27 @@ background:linear-gradient(135deg,#06b6d4,#22d3ee);
 background:linear-gradient(135deg,#7c3aed,#ff6ec7);
 }
 
-@keyframes portal{
-0%{transform:scale(1);opacity:.4;}
-50%{transform:scale(1.2);opacity:.7;}
-100%{transform:scale(1);opacity:.4;}
-}
-
 .section{
-margin-top:36px;
+margin-top:24px;
 }
 
-.info-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:22px;
-margin-top:26px;
+.panel{
+padding:24px 22px;
 }
 
-.info-panel{
-padding:26px;
-}
-
-.info-panel h2{
-margin-top:0;
-font-size:28px;
-}
-
-.info-panel p,
-.info-panel li{
-color:#e2e8f0;
-line-height:1.7;
-}
-
-.info-panel ol,
-.info-panel ul{
-padding-left:22px;
-margin:12px 0 0 0;
-}
-
-.tool-grid{
-display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:22px;
-margin-top:26px;
-}
-
-.card{
-padding:22px;
+.tool-list{
 display:flex;
 flex-direction:column;
+gap:18px;
+margin-top:22px;
 }
 
-.card h3{
-margin:0;
-font-size:24px;
-}
-
-.card .emoji{
-font-size:34px;
-margin-bottom:10px;
-}
-
-.card .subtitle-text{
-font-size:15px;
-color:#c4b5fd;
-margin:6px 0 14px 0;
-}
-
-.card p{
-color:#e2e8f0;
-line-height:1.7;
-margin-top:0;
+.tool-card{
+padding:22px;
 }
 
 .prompt-box{
-margin-top:12px;
+margin-top:14px;
 background:rgba(2,6,23,.82);
 border:1px solid rgba(255,255,255,.1);
 border-radius:16px;
@@ -352,7 +272,7 @@ font-size:13px;
 line-height:1.6;
 white-space:pre-wrap;
 overflow:auto;
-max-height:280px;
+max-height:340px;
 color:#e5e7eb;
 }
 
@@ -366,466 +286,137 @@ font-weight:bold;
 font-size:14px;
 color:white;
 background:linear-gradient(135deg,#7c3aed,#ff6ec7);
-box-shadow:0 8px 18px rgba(0,0,0,.2);
-transition:transform .2s ease, opacity .2s ease;
-}
-
-.copy-btn:hover{
-transform:translateY(-1px);
-opacity:.95;
-}
-
-.workflow{
-display:grid;
-grid-template-columns:repeat(4,minmax(0,1fr));
-gap:16px;
-margin-top:20px;
-}
-
-.step{
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.1);
-border-radius:18px;
-padding:18px;
-}
-
-.step-number{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-width:38px;
-height:38px;
-border-radius:50%;
-background:linear-gradient(135deg,#22d3ee,#7c3aed);
-font-weight:bold;
-margin-bottom:10px;
-}
-
-.step h4{
-margin:0 0 8px 0;
-font-size:18px;
-}
-
-.step p{
-margin:0;
-color:#e2e8f0;
-line-height:1.6;
-font-size:14px;
 }
 
 .footer-card{
-margin-top:30px;
-padding:18px 22px;
+margin-top:24px;
+padding:18px 20px;
 text-align:center;
 color:#cbd5f5;
 font-size:14px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:18px;
 }
 
-.toast{
-position:fixed;
-right:18px;
-bottom:18px;
-padding:14px 18px;
-font-size:14px;
-z-index:50;
-opacity:0;
-transform:translateY(12px);
-transition:all .3s ease;
-pointer-events:none;
-}
-
-.toast.show{
-opacity:1;
-transform:translateY(0);
-}
-
-@media (max-width:1000px){
-.tool-grid{
-grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-.workflow{
-grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-.info-grid{
-grid-template-columns:1fr;
-}
-}
-
-@media (max-width:700px){
-.container{
-padding:48px 16px;
-}
-
-.hero{
-padding:36px 20px;
-}
-
-.main-title{
-font-size:40px;
-letter-spacing:1px;
-}
-
-.subtitle{
-font-size:20px;
-}
-
-.hero-text{
-font-size:16px;
-}
-
-.tool-grid{
-grid-template-columns:1fr;
-}
-
-.workflow{
-grid-template-columns:1fr;
-}
-
-.button{
-width:100%;
-max-width:320px;
-text-align:center;
-}
-}
 </style>
 </head>
 
 <body>
 
-<div class="stars">
-  <div class="star small" style="top:10%;left:20%"></div>
-  <div class="star medium" style="top:25%;left:80%"></div>
-  <div class="star" style="top:40%;left:15%"></div>
-  <div class="star medium" style="top:60%;left:70%"></div>
-  <div class="star" style="top:75%;left:35%"></div>
-  <div class="star small" style="top:18%;left:58%"></div>
-  <div class="star" style="top:82%;left:84%"></div>
-</div>
-
-<div class="magic-dust">
-  <div class="dust" style="left:20%"></div>
-  <div class="dust" style="left:40%"></div>
-  <div class="dust" style="left:60%"></div>
-  <div class="dust" style="left:80%"></div>
-</div>
-
-<div class="shooting-star one"></div>
-<div class="shooting-star two"></div>
-
-<div id="toast" class="toast">Prompt copied ✨</div>
-
 <div class="container">
 
-  <div class="hero">
-    <div class="aurora"></div>
-    <h1 class="main-title">Advocacy Command Center</h1>
-    <div class="subtitle">Luna Blaze</div>
-    <div class="motto">“Detect • Translate • Respond • Organize”</div>
+<div class="hero">
+<h1 class="main-title">Advocacy Command Center</h1>
+<div class="subtitle">Luna Blaze</div>
+<div class="motto">“Detect • Translate • Respond • Organize”</div>
 
-    <p class="hero-text">
-      A cosmic toolkit for educators, advocates, organizers, and union leaders who need to monitor policy, understand complex changes, and turn information into action fast.
-    </p>
+<p class="hero-text">
+Use these prompts to monitor policy, understand complex education issues, and quickly generate advocacy responses.
+</p>
 
-    <div class="hero-buttons">
-      <a class="button primary" href="index.html">Back to Portal</a>
-      <a class="button secondary" href="#tools">Jump to Tools</a>
-    </div>
-  </div>
+<div class="hero-buttons">
+<a class="button primary" href="index.html">Back to Portal</a>
+</div>
+</div>
 
-  <div class="section info-grid">
-    <div class="info-panel">
-      <h2>How to Use This Space</h2>
-      <ol>
-        <li>Choose a tool below based on what you need to monitor, explain, or create.</li>
-        <li>Copy the prompt and paste it into ChatGPT or another AI tool.</li>
-        <li>Replace the bracketed text with your state, district, bill, board item, or issue.</li>
-        <li>Review the output carefully and verify details before sharing publicly.</li>
-      </ol>
-    </div>
+<div class="section panel">
+<h2>Suggested Workflow</h2>
 
-    <div class="info-panel">
-      <h2>Why It Matters</h2>
-      <p>
-        Advocacy moves faster when you can catch policy changes early, translate them clearly, and respond with confidence. This page helps turn scattered information into usable action for educators and communities.
-      </p>
-      <ul>
-        <li>Track legislation and board action</li>
-        <li>Watch budgets and staffing changes</li>
-        <li>Generate testimony, emails, and talking points</li>
-        <li>Translate dense policy into plain language</li>
-      </ul>
-    </div>
-  </div>
+<p><strong>1. Monitor</strong> – Identify what changed.</p>
+<p><strong>2. Translate</strong> – Turn policy language into plain explanations.</p>
+<p><strong>3. Respond</strong> – Generate talking points or testimony.</p>
+<p><strong>4. Organize</strong> – Share with educators, families, or community partners.</p>
 
-  <div class="section" id="tools">
-    <div class="tool-grid">
+</div>
 
-      <div class="card">
-        <div class="emoji">📡</div>
-        <h3>Universal Policy Monitor</h3>
-        <div class="subtitle-text">Track legislation, budgets, board actions, and news</div>
-        <p>Use this to scan multiple public education signals at once and catch patterns early.</p>
-        <div class="prompt-box" id="prompt1">Search for new updates related to public education policy in [STATE, DISTRICT, OR REGION].
+<div class="section panel">
+<h2>How to Use These Prompts</h2>
+
+<ul>
+<li>Copy the prompt.</li>
+<li>Paste it into ChatGPT or another AI assistant.</li>
+<li>Replace the bracketed placeholders with your location or policy text.</li>
+<li>Adjust the audience (families, educators, media, policymakers).</li>
+<li>Always verify important details before sharing publicly.</li>
+</ul>
+
+</div>
+
+<div class="section" id="prompts">
+<div class="tool-list">
+
+<div class="tool-card">
+<h3>Universal Policy Monitor</h3>
+
+<div class="prompt-box" id="prompt1">
+Search for new updates related to public education policy in [STATE, DISTRICT, OR REGION].
 
 Scan the following sources when possible:
-- state legislature and education committee activity
-- state department of education releases
-- school district announcements and budget documents
-- school board agendas and meeting materials
+- state legislature
+- department of education
+- school district announcements
+- school board agendas
 - credible local news coverage
 
-Focus on developments involving:
-- early childhood education (ECE, preschool)
-- special education and IDEA compliance
-- multilingual or immersion programs
-- teacher planning time and workload
-- staffing levels and educator shortages
-- class sizes, ratios, and caseload limits
-- therapist and support staff roles
-- school funding or budget reductions
-- curriculum, accountability, or assessment policy
-- union or labor issues affecting educators
-
-Notify me only about meaningful new developments.
-
-For each update provide:
-1. A short summary of the change
-2. The source or policy action
-3. Why it matters for educators, students, or public schools
-4. Potential advocacy implications</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt1')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">🏛️</div>
-        <h3>State Legislative Tracker</h3>
-        <div class="subtitle-text">Monitor bills, hearings, votes, and amendments</div>
-        <p>Use this to follow state education policy as it moves through the legislature.</p>
-        <div class="prompt-box" id="prompt2">Search for updates in the [STATE NAME] Legislature related to education policy.
-
-Focus especially on topics including:
-- early childhood education
-- special education
-- multilingual or immersion programs
-- teacher planning time
-- staffing ratios or caseload limits
-- union or labor issues affecting educators
-- school funding or budget changes
-- curriculum or assessment policy
-
-Notify me about:
-- new bills introduced
-- status changes
-- committee hearings
-- votes
-- amendments
-- fiscal notes or cost estimates
-
-Provide a concise summary and explain the potential impact for educators, students, and public schools.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt2')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">💼</div>
-        <h3>Budget & Staffing Watchdog</h3>
-        <div class="subtitle-text">Catch cuts, restructures, and workload shifts early</div>
-        <p>Use this to scan district and board materials for meaningful changes to staffing, services, and budget priorities.</p>
-        <div class="prompt-box" id="prompt3">Search for updates from [SCHOOL DISTRICT NAME], the local school board, and the state department of education.
-
-Monitor documents, board agendas, and reports for changes related to:
-- district budgets
-- staffing levels
-- program restructuring
-- class size or ratio changes
-- caseload limits
-- service delivery models
-- program reductions or eliminations
-- early childhood education programs
-- special education services
-- multilingual or immersion programs
-- teacher planning time or workload
-
 Notify me only about meaningful developments.
+</div>
 
-Provide a concise summary and highlight potential impacts on educators, students, and families.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt3')">Copy Prompt</button>
-      </div>
+<button class="copy-btn" onclick="copyPrompt('prompt1')">Copy Prompt</button>
+</div>
 
-      <div class="card">
-        <div class="emoji">🧩</div>
-        <h3>ECE & Special Education Monitor</h3>
-        <div class="subtitle-text">Follow staffing, services, compliance, and supports</div>
-        <p>Use this for early childhood and special education advocacy focused on therapists, psychologists, waivers, and service delivery.</p>
-        <div class="prompt-box" id="prompt4">Search for updates from [DISTRICT NAME] and local school board materials related to:
-- early childhood education programs
-- preschool services
-- special education staffing
-- occupational therapists, physical therapists, speech therapists
-- school psychologists and diagnosticians
-- implementation or instructional coaches
-- caseload changes
-- class size or ratio adjustments
-- waivers
-- inclusive or blended classroom models
-- service delivery changes
-- evaluation timelines and compliance
+<div class="tool-card">
+<h3>Policy Translator</h3>
 
-Notify me only about meaningful new developments.
-
-Provide a concise summary explaining the potential impact on student services and educator workload.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt4')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">🗓️</div>
-        <h3>Advocacy Event Briefing</h3>
-        <div class="subtitle-text">Prep for hearings, board meetings, and policy discussions</div>
-        <p>Use this to quickly prepare before public testimony, lobbying days, or school board meetings.</p>
-        <div class="prompt-box" id="prompt5">Search for upcoming education-related legislative hearings, committee meetings, school board meetings, or policy discussions in [STATE OR DISTRICT].
-
-Look ahead 14 days.
-
-Prepare a briefing that includes:
-- relevant legislators or board members
-- bills or policies being discussed
-- committees involved
-- key education topics
-
-Provide suggested talking points educators, parents, or advocates could use when contacting policymakers or speaking at meetings.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt5')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">📰</div>
-        <h3>Education News Monitor</h3>
-        <div class="subtitle-text">Track the stories shaping public opinion</div>
-        <p>Use this to identify media narratives around public education, staffing, and school policy debates.</p>
-        <div class="prompt-box" id="prompt6">Search for recent news coverage about education in [STATE OR DISTRICT].
-
-Focus on stories related to:
-- early childhood education
-- special education
-- teacher shortages or staffing issues
-- school funding
-- curriculum debates
-- multilingual education
-- school choice or voucher policies
-- educator working conditions
-
-Provide a short summary of key stories and explain why they may matter for educators or education advocates.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt6')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">🤖</div>
-        <h3>AI Tools Monitor</h3>
-        <div class="subtitle-text">Discover tools for organizing, research, and classroom support</div>
-        <p>Use this to keep your educator advocacy toolkit current as new AI tools emerge.</p>
-        <div class="prompt-box" id="prompt7">Search for new or updated AI tools useful for educators, unions, and education advocates.
-
-Focus on tools for:
-- research and policy analysis
-- advocacy and organizing campaigns
-- content creation and communication
-- document summarization
-- classroom planning and instruction
-
-Provide a short summary of noteworthy tools and explain how they could support educator work or advocacy efforts.</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt7')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">⚡</div>
-        <h3>Rapid Response Generator</h3>
-        <div class="subtitle-text">Turn updates into testimony, emails, and action steps</div>
-        <p>Use this when a bill drops, a story breaks, or an agenda item surfaces and you need a quick advocacy response.</p>
-        <div class="prompt-box" id="prompt8">You are assisting an education advocate responding to a new policy development.
-
-Based on the policy update below, generate a rapid advocacy response.
-
-Policy Update:
-[PASTE NEWS, BILL UPDATE, OR BOARD AGENDA ITEM HERE]
-
-Create the following:
-1. Plain-language summary
-2. Key concerns for students, educators, public schools, and equity
-3. 4-6 talking points
-4. A short public comment statement
-5. A concise email to a policymaker
-6. A short social media post encouraging constructive engagement</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt8')">Copy Prompt</button>
-      </div>
-
-      <div class="card">
-        <div class="emoji">🔎</div>
-        <h3>Policy Translator</h3>
-        <div class="subtitle-text">Convert dense policy language into plain English</div>
-        <p>Use this to explain bills, board items, and policy documents to educators and families in a clearer way.</p>
-        <div class="prompt-box" id="prompt9">You are assisting an educator or community advocate in explaining an education policy update.
+<div class="prompt-box" id="prompt2">
+You are assisting an educator explaining a policy update.
 
 Policy Text:
-[PASTE BILL LANGUAGE, POLICY DOCUMENT, OR BOARD AGENDA ITEM]
+[PASTE BILL OR POLICY TEXT]
 
-Translate the information into plain language.
+Explain:
+1. What the policy does
+2. What changes
+3. Why it matters
+4. Questions people may ask
+</div>
 
-Provide:
-1. A simple summary
-2. What the policy changes
-3. Why it matters for students, educators, families, and school resources
-4. 3-5 key questions people may ask
-5. A short explanation suitable for a parent newsletter or school communication</div>
-        <button class="copy-btn" onclick="copyPrompt('prompt9')">Copy Prompt</button>
-      </div>
+<button class="copy-btn" onclick="copyPrompt('prompt2')">Copy Prompt</button>
+</div>
 
-    </div>
-  </div>
+<div class="tool-card">
+<h3>Rapid Advocacy Response</h3>
 
-  <div class="section info-panel">
-    <h2>Suggested Workflow</h2>
-    <div class="workflow">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4>Monitor</h4>
-        <p>Use the policy, legislative, or budget prompts to catch important developments early.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4>Translate</h4>
-        <p>Turn dense policy language into clear explanations educators and families can understand.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4>Respond</h4>
-        <p>Generate talking points, testimony, media responses, and policymaker emails quickly.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4>Organize</h4>
-        <p>Share adapted outputs with educators, families, members, and community partners.</p>
-      </div>
-    </div>
-  </div>
+<div class="prompt-box" id="prompt3">
+Based on the policy update below, create:
 
-  <div class="footer-card">
-    AI can help you move faster, but people still provide the judgment, relationships, and courage. Always verify policy details before posting, emailing, or speaking publicly.
-  </div>
+1. Plain language summary
+2. Key concerns
+3. Talking points
+4. Public comment statement
+5. Email to policymakers
+6. Social media message
+
+Policy Update:
+[PASTE TEXT HERE]
+</div>
+
+<button class="copy-btn" onclick="copyPrompt('prompt3')">Copy Prompt</button>
+</div>
+
+</div>
+</div>
+
+<div class="footer-card">
+AI can help you move faster, but people still provide the judgment and relationships that make advocacy effective.
+</div>
 
 </div>
 
 <script>
 function copyPrompt(id){
-  const text = document.getElementById(id).innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 1800);
-  }).catch(() => {
-    alert('Copy failed. Please copy the prompt manually.');
-  });
+const text = document.getElementById(id).innerText;
+navigator.clipboard.writeText(text);
 }
 </script>
 
