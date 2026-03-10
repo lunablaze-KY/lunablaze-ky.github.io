@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advocacy Prompt Command Center</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:linear-gradient(135deg,#f9f6ff,#f2fbff,#f7fff6);
+color:#333;
+}
+
+header{
+text-align:center;
+padding:60px 20px;
+}
+
+header h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+header p{
+max-width:700px;
+margin:auto;
+font-size:18px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+display:flex;
+flex-direction:column;
+}
+
+.card h2{
+margin-top:0;
+font-size:22px;
+}
+
+.card p{
+font-size:14px;
+}
+
+.prompt{
+background:#111;
+color:#eee;
+padding:15px;
+border-radius:8px;
+font-size:13px;
+white-space:pre-wrap;
+max-height:260px;
+overflow:auto;
+margin-top:10px;
+}
+
+button{
+margin-top:12px;
+padding:10px;
+border:none;
+background:#6c63ff;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#544dff;
+}
+
+footer{
+text-align:center;
+padding:40px;
+font-size:14px;
+color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Luna Blaze Advocacy Command Center</h1>
+<p>
+A toolkit for educators and advocates to monitor policy, translate complex legislation, and generate advocacy responses using AI.
+</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Universal Policy Monitor</h2>
+<p>Track legislation, board actions, budgets, and news.</p>
+
+<div class="prompt" id="prompt1">
+Search for new updates related to public education policy in [STATE, DISTRICT, OR REGION].
+
+Scan:
+- state legislature activity
+- department of education releases
+- school board agendas
+- district announcements
+- credible local news
+
+Focus on:
+early childhood education
+special education
+multilingual programs
+teacher planning time
+staffing levels
+class size or ratios
+therapists and support staff
+school funding changes
+union or labor issues
+
+Notify me about meaningful updates and explain advocacy implications.
+</div>
+
+<button onclick="copyPrompt('prompt1')">Copy Prompt</button>
+</div>
+
+
+<div class="card">
+<h2>Legislative Tracker</h2>
+<p>Monitor education bills and policy changes.</p>
+
+<div class="prompt" id="prompt2">
+Search for updates in the [STATE NAME] Legislature related to education policy.
+
+Track:
+- new bills
+- committee hearings
+- amendments
+- votes
+- fiscal notes
+
+Focus on:
+early childhood
+special education
+teacher planning time
+caseload limits
+school funding
+curriculum policy
+
+Provide a concise summary and explain the potential impact for educators and students.
+</div>
+
+<button onclick="copyPrompt('prompt2')">Copy Prompt</button>
+</div>
+
+
+<div class="card">
+<h2>Budget & Staffing Watchdog</h2>
+<p>Detect staffing changes and program reductions.</p>
+
+<div class="prompt" id="prompt3">
+Search for updates from [SCHOOL DISTRICT NAME] and local school board materials.
+
+Monitor:
+district budgets
+staffing levels
+class size changes
+caseload changes
+service delivery models
+program restructuring
+special education services
+multilingual programs
+teacher workload
+
+Notify me about meaningful developments and summarize the impact on schools.
+</div>
+
+<button onclick="copyPrompt('prompt3')">Copy Prompt</button>
+</div>
+
+
+<div class="card">
+<h2>Rapid Response Generator</h2>
+<p>Generate talking points and advocacy materials quickly.</p>
+
+<div class="prompt" id="prompt4">
+Policy Update:
+[PASTE BILL OR NEWS HERE]
+
+Create:
+
+Plain-language summary
+
+Key concerns for students and educators
+
+Talking points
+
+Public comment statement
+
+Email to a policymaker
+
+Short social media explanation encouraging constructive engagement.
+</div>
+
+<button onclick="copyPrompt('prompt4')">Copy Prompt</button>
+</div>
+
+
+<div class="card">
+<h2>Policy Translator</h2>
+<p>Turn dense policy language into plain English.</p>
+
+<div class="prompt" id="prompt5">
+Policy Text:
+[PASTE POLICY HERE]
+
+Explain:
+
+simple summary
+
+what changes in schools
+
+why it matters for students, educators, and families
+
+common questions people may ask
+
+short explanation suitable for a parent newsletter.
+</div>
+
+<button onclick="copyPrompt('prompt5')">Copy Prompt</button>
+</div>
+
+
+<div class="card">
+<h2>Advocacy Event Briefing</h2>
+<p>Prepare for hearings or board meetings.</p>
+
+<div class="prompt" id="prompt6">
+Search for upcoming legislative hearings, committee meetings, or school board meetings in [STATE OR DISTRICT].
+
+Look ahead 14 days.
+
+Provide:
+legislators involved
+bills under discussion
+committee members
+key education topics
+suggested talking points for educators and advocates.
+</div>
+
+<button onclick="copyPrompt('prompt6')">Copy Prompt</button>
+</div>
+
+</div>
+
+<footer>
+AI can help you move faster, but always verify policy information before sharing publicly.
+</footer>
+
+
+<script>
+
+function copyPrompt(id) {
+var text = document.getElementById(id).innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("Prompt copied!");
+}
+
+</script>
+
+</body>
+</html>
