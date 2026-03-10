@@ -6,24 +6,20 @@
 <title>Agents of Advocacy | Luna Blaze</title>
 
 <style>
-
 body{
 margin:0;
 font-family:'Trebuchet MS',sans-serif;
 color:white;
-
 background:
 radial-gradient(circle at 20% 20%, #ff6ec7 0%, transparent 40%),
 radial-gradient(circle at 80% 30%, #7c3aed 0%, transparent 40%),
 radial-gradient(circle at 40% 80%, #06b6d4 0%, transparent 40%),
 linear-gradient(135deg,#020617,#1e1b4b,#020617);
-
 min-height:100vh;
 overflow-x:hidden;
 }
 
 /* stars */
-
 .stars{
 position:fixed;
 inset:0;
@@ -53,7 +49,6 @@ animation:twinkle 5s infinite ease-in-out;
 }
 
 /* magical dust */
-
 .magic-dust{
 position:fixed;
 inset:0;
@@ -81,19 +76,16 @@ animation:drift 45s linear infinite;
 }
 
 /* shooting stars */
-
 .shooting-star{
 position:fixed;
 width:120px;
 height:2px;
-
 background:linear-gradient(
 90deg,
 rgba(255,255,255,0),
 rgba(255,255,255,.9),
 rgba(255,255,255,0)
 );
-
 opacity:0;
 transform:rotate(-25deg);
 pointer-events:none;
@@ -125,7 +117,6 @@ animation:shoot2 14s linear infinite;
 }
 
 /* layout */
-
 .container{
 max-width:1000px;
 margin:auto;
@@ -148,7 +139,6 @@ position:relative;
 }
 
 /* aurora glow */
-
 .aurora{
 position:absolute;
 top:-40px;
@@ -156,12 +146,10 @@ left:50%;
 transform:translateX(-50%);
 width:520px;
 height:260px;
-
 background:
 radial-gradient(ellipse at center, rgba(255,110,199,.25) 0%, transparent 45%),
 radial-gradient(ellipse at 30% 40%, rgba(124,58,237,.25) 0%, transparent 48%),
 radial-gradient(ellipse at 70% 55%, rgba(34,211,238,.22) 0%, transparent 50%);
-
 filter:blur(26px);
 animation:auroraShift 10s ease-in-out infinite;
 }
@@ -172,14 +160,11 @@ animation:auroraShift 10s ease-in-out infinite;
 100%{transform:translateX(-50%) scale(1);}
 }
 
-/* SHIMMER TITLE */
-
+/* shimmer title */
 .main-title{
-
 font-size:68px;
 letter-spacing:4px;
 margin-bottom:10px;
-
 background:linear-gradient(
 90deg,
 #ffffff,
@@ -188,15 +173,11 @@ background:linear-gradient(
 #ff6ec7,
 #ffffff
 );
-
 background-size:300%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
 animation:titleGlow 8s linear infinite;
-
-text-shadow:
-0 0 10px rgba(255,255,255,.2);
+text-shadow:0 0 10px rgba(255,255,255,.2);
 }
 
 @keyframes titleGlow{
@@ -211,7 +192,6 @@ margin-bottom:20px;
 }
 
 /* sigil */
-
 .sigil{
 font-size:46px;
 margin-bottom:10px;
@@ -225,7 +205,6 @@ animation:pulse 6s infinite ease-in-out;
 }
 
 /* motto */
-
 .motto{
 font-size:20px;
 font-style:italic;
@@ -247,41 +226,47 @@ color:#e0e7ff;
 
 .name{
 font-size:18px;
-margin-bottom:20px;
+margin-bottom:24px;
 }
 
 /* luna avatar */
-
 .luna-avatar{
 width:200px;
 margin:20px auto;
 border-radius:50%;
 border:1px solid rgba(255,255,255,.2);
-
 box-shadow:
 0 0 12px rgba(255,255,255,.15),
 0 0 30px rgba(34,211,238,.15);
-
 animation:float 7s ease-in-out infinite;
 }
 
-/* portal button */
+/* button group */
+.button-group{
+display:flex;
+justify-content:center;
+gap:16px;
+flex-wrap:wrap;
+margin-top:12px;
+}
 
+/* buttons */
 .button{
 display:inline-block;
 padding:16px 28px;
-margin-top:10px;
 border-radius:16px;
 text-decoration:none;
 font-weight:bold;
-
-background:linear-gradient(135deg,#06b6d4,#22d3ee);
-
 color:white;
 border:1px solid rgba(255,255,255,.2);
-
 position:relative;
 overflow:hidden;
+transition:transform .25s ease, box-shadow .25s ease;
+box-shadow:0 10px 25px rgba(0,0,0,.22);
+}
+
+.button:hover{
+transform:translateY(-2px);
 }
 
 .button::before{
@@ -289,11 +274,18 @@ content:"";
 position:absolute;
 inset:-2px;
 border-radius:18px;
-
 background:
 radial-gradient(circle, rgba(255,255,255,.2) 0%, rgba(34,211,238,.15) 40%, transparent 70%);
-
 animation:portal 4s ease-in-out infinite;
+pointer-events:none;
+}
+
+.button.primary{
+background:linear-gradient(135deg,#06b6d4,#22d3ee);
+}
+
+.button.secondary{
+background:linear-gradient(135deg,#7c3aed,#ff6ec7);
 }
 
 @keyframes portal{
@@ -317,24 +309,55 @@ font-size:14px;
 color:#cbd5f5;
 }
 
+@media (max-width:700px){
+.hero{
+padding:40px 24px;
+}
+
+.main-title{
+font-size:46px;
+letter-spacing:2px;
+}
+
+.subtitle{
+font-size:22px;
+}
+
+.tagline{
+font-size:18px;
+}
+
+.motto{
+font-size:18px;
+}
+
+.luna-avatar{
+width:160px;
+}
+
+.button{
+width:100%;
+max-width:320px;
+}
+}
 </style>
 </head>
 
 <body>
 
 <div class="stars">
-<div class="star small" style="top:10%;left:20%"></div>
-<div class="star medium" style="top:25%;left:80%"></div>
-<div class="star" style="top:40%;left:15%"></div>
-<div class="star medium" style="top:60%;left:70%"></div>
-<div class="star" style="top:75%;left:35%"></div>
+  <div class="star small" style="top:10%;left:20%"></div>
+  <div class="star medium" style="top:25%;left:80%"></div>
+  <div class="star" style="top:40%;left:15%"></div>
+  <div class="star medium" style="top:60%;left:70%"></div>
+  <div class="star" style="top:75%;left:35%"></div>
 </div>
 
 <div class="magic-dust">
-<div class="dust" style="left:20%"></div>
-<div class="dust" style="left:40%"></div>
-<div class="dust" style="left:60%"></div>
-<div class="dust" style="left:80%"></div>
+  <div class="dust" style="left:20%"></div>
+  <div class="dust" style="left:40%"></div>
+  <div class="dust" style="left:60%"></div>
+  <div class="dust" style="left:80%"></div>
 </div>
 
 <div class="shooting-star one"></div>
@@ -342,60 +365,51 @@ color:#cbd5f5;
 
 <div class="container">
 
-<div class="hero">
+  <div class="hero">
+    <div class="aurora"></div>
 
-<div class="aurora"></div>
+    <h1 class="main-title">Agents of Advocacy</h1>
+    <div class="subtitle">Luna Blaze</div>
+    <div class="sigil">✦</div>
 
-<h1 class="main-title">Agents of Advocacy</h1>
+    <img class="luna-avatar" src="luna-blaze.png" alt="Luna Blaze">
 
-<div class="subtitle">Luna Blaze</div>
+    <div class="motto">
+      “Amplifying Voices • Illuminating Truth”
+    </div>
 
-<div class="sigil">✦</div>
+    <p class="tagline">
+      AI for Advocacy • Amplifying Educator Voices
+    </p>
 
-<img class="luna-avatar" src="luna-blaze.png">
+    <p class="name">
+      Karrie De Torres • Educator • Organizer • Advocate
+    </p>
 
-<div class="motto">
-“Amplifying Voices • Illuminating Truth”
-</div>
+    <div class="button-group">
+      <a class="button primary" href="/ai-advocacy">Enter the Advocacy Portal</a>
+      <a class="button secondary" href="command-center.html">Open the Command Center</a>
+    </div>
+  </div>
 
-<p class="tagline">
-AI for Advocacy • Amplifying Educator Voices
-</p>
+  <div class="section">
+    <div class="card">
+      <h2>About This Project</h2>
 
-<p class="name">
-Karrie De Torres • Educator • Organizer • Advocate
-</p>
+      <p>
+        This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
+      </p>
 
-<a class="button" href="/ai-advocacy">Enter the Advocacy Portal</a>
+      <p>
+        These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
+      </p>
+    </div>
+  </div>
 
-</div>
+  <div class="footer">
+    © 2025 Karrie De Torres
+  </div>
 
-<div class="section">
-
-<div class="card">
-
-<h2>About This Project</h2>
-
-<p>
-This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
-</p>
-
-<p>
-These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
-</p>
-
-</div>
-
-</div>
-
-<div class="footer">
-© 2025 Karrie De Torres
-</div>
-
-</div>
-
-</body>
-</html>
 </div>
 
 </body>
