@@ -1,608 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agents of Advocacy | Luna Blaze</title>
-
-<style>
-body{
-margin:0;
-font-family:'Trebuchet MS',sans-serif;
-color:white;
-background:
-radial-gradient(circle at 20% 20%, #ff6ec7 0%, transparent 40%),
-radial-gradient(circle at 80% 30%, #7c3aed 0%, transparent 40%),
-radial-gradient(circle at 40% 80%, #06b6d4 0%, transparent 40%),
-linear-gradient(135deg,#020617,#1e1b4b,#020617);
-min-height:100vh;
-overflow-x:hidden;
-}
-
-/* stars */
-.stars{
-position:fixed;
-inset:0;
-pointer-events:none;
-z-index:1;
-}
-
-.star{
-position:absolute;
-width:4px;
-height:4px;
-background:white;
-border-radius:50%;
-box-shadow:
-0 0 4px rgba(255,255,255,.6),
-0 0 10px rgba(255,255,255,.3);
-animation:twinkle 5s infinite ease-in-out;
-}
-
-.star.small{width:2px;height:2px;}
-.star.medium{width:5px;height:5px;}
-
-@keyframes twinkle{
-0%{opacity:.3;transform:scale(.7);}
-50%{opacity:.9;transform:scale(1.2);}
-100%{opacity:.3;transform:scale(.7);}
-}
-
-/* magical dust */
-.magic-dust{
-position:fixed;
-inset:0;
-pointer-events:none;
-z-index:0;
-}
-
-.dust{
-position:absolute;
-width:3px;
-height:3px;
-border-radius:50%;
-background:white;
-box-shadow:
-0 0 4px rgba(255,255,255,.5),
-0 0 10px rgba(255,255,255,.25);
-opacity:.35;
-animation:drift 45s linear infinite;
-}
-
-@keyframes drift{
-0%{transform:translate(0,0);}
-50%{transform:translate(20px,-600px);}
-100%{transform:translate(-15px,-1200px);}
-}
-
-/* shooting stars */
-.shooting-star{
-position:fixed;
-width:120px;
-height:2px;
-background:linear-gradient(
-90deg,
-rgba(255,255,255,0),
-rgba(255,255,255,.9),
-rgba(255,255,255,0)
-);
-opacity:0;
-transform:rotate(-25deg);
-pointer-events:none;
-z-index:2;
-}
-
-.shooting-star.one{
-top:12%;
-left:-20%;
-animation:shoot1 12s linear infinite;
-}
-
-.shooting-star.two{
-top:35%;
-left:-30%;
-animation:shoot2 14s linear infinite;
-}
-
-@keyframes shoot1{
-0%,85%{opacity:0;}
-87%{opacity:.8;}
-100%{opacity:0;transform:translateX(1400px) translateY(320px) rotate(-25deg);}
-}
-
-@keyframes shoot2{
-0%,88%{opacity:0;}
-90%{opacity:.8;}
-100%{opacity:0;transform:translateX(1500px) translateY(360px) rotate(-25deg);}
-}
-
-/* layout */
-.container{
-max-width:1000px;
-margin:auto;
-padding:70px 20px;
-text-align:center;
-position:relative;
-z-index:3;
-}
-
-.hero,.card{
-background:rgba(15,23,42,.65);
-border:1px solid rgba(255,255,255,.12);
-border-radius:22px;
-backdrop-filter:blur(10px);
-}
-
-.hero{
-padding:60px;
-position:relative;
-overflow:hidden;
-}
-
-/* aurora glow */
-.aurora{
-position:absolute;
-top:-40px;
-left:50%;
-transform:translateX(-50%);
-width:520px;
-height:260px;
-background:
-radial-gradient(ellipse at center, rgba(255,110,199,.25) 0%, transparent 45%),
-radial-gradient(ellipse at 30% 40%, rgba(124,58,237,.25) 0%, transparent 48%),
-radial-gradient(ellipse at 70% 55%, rgba(34,211,238,.22) 0%, transparent 50%);
-filter:blur(26px);
-animation:auroraShift 10s ease-in-out infinite;
-}
-
-@keyframes auroraShift{
-0%{transform:translateX(-50%) scale(1);}
-50%{transform:translateX(-50%) scale(1.08);}
-100%{transform:translateX(-50%) scale(1);}
-}
-
-/* title */
-.main-title{
-font-size:68px;
-line-height:1.05;
-letter-spacing:2px;
-margin:0 0 12px 0;
-word-break:break-word;
-overflow-wrap:anywhere;
-background:linear-gradient(
-90deg,
-#ffffff,
-#22d3ee,
-#a78bfa,
-#ff6ec7,
-#ffffff
-);
-background-size:300%;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:titleGlow 8s linear infinite;
-text-shadow:0 0 10px rgba(255,255,255,.2);
-}
-
-@keyframes titleGlow{
-0%{background-position:0%}
-100%{background-position:300%}
-}
-
-.subtitle{
-font-size:28px;
-opacity:.9;
-margin-bottom:20px;
-}
-
-.sigil{
-font-size:46px;
-margin-bottom:10px;
-animation:pulse 6s infinite ease-in-out;
-}
-
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.1);}
-100%{transform:scale(1);}
-}
-
-.motto{
-font-size:20px;
-font-style:italic;
-margin-bottom:25px;
-animation:float 6s ease-in-out infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-8px);}
-100%{transform:translateY(0);}
-}
-
-.tagline{
-font-size:22px;
-margin-bottom:20px;
-color:#e0e7ff;
-}
-
-.name{
-font-size:18px;
-margin-bottom:20px;
-}
-
-/* luna avatar */
-.luna-avatar{
-width:200px;
-max-width:70vw;
-margin:20px auto;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.2);
-box-shadow:
-0 0 12px rgba(255,255,255,.15),
-0 0 30px rgba(34,211,238,.15);
-animation:float 7s ease-in-out infinite;
-display:block;
-}
-
-/* buttons */
-.button-group{
-display:flex;
-justify-content:center;
-gap:16px;
-flex-wrap:wrap;
-}
-
-.button{
-display:inline-block;
-padding:16px 28px;
-border-radius:16px;
-text-decoration:none;
-font-weight:bold;
-color:white;
-border:1px solid rgba(255,255,255,.2);
-position:relative;
-overflow:hidden;
-box-sizing:border-box;
-box-shadow:0 10px 25px rgba(0,0,0,.22);
-transition:transform .25s ease, box-shadow .25s ease;
-}
-
-.button:hover{
-transform:translateY(-2px);
-}
-
-.button.primary{
-background:linear-gradient(135deg,#06b6d4,#22d3ee);
-}
-
-.button.secondary{
-background:linear-gradient(135deg,#7c3aed,#ff6ec7);
-}
-
-.button::before{
-content:"";
-position:absolute;
-inset:-2px;
-border-radius:18px;
-background:
-radial-gradient(circle, rgba(255,255,255,.2) 0%, rgba(34,211,238,.15) 40%, transparent 70%);
-animation:portal 4s ease-in-out infinite;
-pointer-events:none;
-}
-
-@keyframes portal{
-0%{transform:scale(1);opacity:.4;}
-50%{transform:scale(1.2);opacity:.7;}
-100%{transform:scale(1);opacity:.4;}
-}
-
-.section{
-margin-top:50px;
-}
-
-.card{
-padding:25px;
-margin-top:20px;
-}
-
-.card p{
-line-height:1.7;
-}
-
-/* disclaimer sparkles */
-.luna-sparkle{
-font-size:18px;
-margin:0 6px;
-color:#22d3ee;
-text-shadow:
-0 0 6px rgba(34,211,238,.7),
-0 0 12px rgba(167,139,250,.5),
-0 0 20px rgba(255,110,199,.4);
-animation:lunaTwinkle 4s ease-in-out infinite;
-display:inline-block;
-}
-
-@keyframes lunaTwinkle{
-0%{opacity:.5;transform:scale(.9);}
-50%{opacity:1;transform:scale(1.2);}
-100%{opacity:.5;transform:scale(.9);}
-}
-
-/* tiny floating helper */
-.luna-helper{
-position:fixed;
-bottom:18px;
-left:-80px;
-width:30px;
-height:30px;
-border-radius:50%;
-z-index:6;
-pointer-events:none;
-background:
-radial-gradient(circle at 35% 35%, #ffffff 0%, #c4b5fd 18%, #22d3ee 40%, #7c3aed 72%, rgba(124,58,237,.15) 100%);
-box-shadow:
-0 0 10px rgba(34,211,238,.55),
-0 0 18px rgba(167,139,250,.35),
-0 0 34px rgba(255,110,199,.18);
-animation:helperCruise 26s linear infinite;
-}
-
-.luna-helper::before{
-content:"";
-position:absolute;
-top:11px;
-left:9px;
-width:12px;
-height:8px;
-border-radius:8px;
-background:rgba(15,23,42,.8);
-box-shadow:inset 0 0 4px rgba(255,255,255,.15);
-}
-
-.luna-helper::after{
-content:"";
-position:absolute;
-top:13px;
-left:11px;
-width:3px;
-height:3px;
-border-radius:50%;
-background:#22d3ee;
-box-shadow:
-8px 0 0 #ff6ec7,
-0 0 6px rgba(34,211,238,.8),
-8px 0 6px rgba(255,110,199,.8);
-animation:helperBlink 3.2s ease-in-out infinite;
-}
-
-.helper-trail{
-position:fixed;
-bottom:28px;
-left:-100px;
-width:50px;
-height:2px;
-z-index:5;
-pointer-events:none;
-background:linear-gradient(90deg, rgba(255,255,255,0), rgba(34,211,238,.5), rgba(255,255,255,0));
-filter:blur(1px);
-animation:helperTrail 26s linear infinite;
-}
-
-@keyframes helperCruise{
-0%{transform:translateX(0) translateY(0);}
-15%{transform:translateX(20vw) translateY(-2px);}
-35%{transform:translateX(45vw) translateY(3px);}
-55%{transform:translateX(68vw) translateY(-3px);}
-75%{transform:translateX(95vw) translateY(2px);}
-100%{transform:translateX(125vw) translateY(0);}
-}
-
-@keyframes helperTrail{
-0%{transform:translateX(0); opacity:0;}
-8%{opacity:.7;}
-90%{opacity:.7;}
-100%{transform:translateX(125vw); opacity:0;}
-}
-
-@keyframes helperBlink{
-0%,44%,100%{transform:scaleY(1);}
-46%,48%{transform:scaleY(.15);}
-50%,92%{transform:scaleY(1);}
-94%,96%{transform:scaleY(.15);}
-}
-
-/* footer */
-.footer{
-margin-top:60px;
-font-size:14px;
-color:#cbd5f5;
-text-align:center;
-}
-
-/* mobile fixes */
-@media (max-width:700px){
-.container{
-padding:40px 14px 70px 14px;
-}
-
-.hero{
-padding:34px 18px;
-border-radius:18px;
-}
-
-.card{
-padding:20px 16px;
-border-radius:18px;
-}
-
-.main-title{
-font-size:clamp(40px, 13vw, 56px);
-line-height:1.02;
-letter-spacing:1px;
-margin-bottom:8px;
-}
-
-.subtitle{
-font-size:20px;
-margin-bottom:14px;
-}
-
-.sigil{
-font-size:34px;
-margin-bottom:8px;
-}
-
-.motto{
-font-size:17px;
-margin-bottom:18px;
-}
-
-.tagline{
-font-size:18px;
-margin-bottom:14px;
-}
-
-.name{
-font-size:15px;
-line-height:1.5;
-margin-bottom:18px;
-}
-
-.button-group{
-gap:12px;
-}
-
-.button{
-width:100%;
-max-width:320px;
-padding:14px 20px;
-font-size:16px;
-}
-
-.footer{
-font-size:13px;
-}
-
-.aurora{
-width:360px;
-height:190px;
-top:-10px;
-}
-
-.luna-helper{
-width:24px;
-height:24px;
-bottom:10px;
-}
-
-.luna-helper::before{
-top:9px;
-left:7px;
-width:10px;
-height:6px;
-}
-
-.luna-helper::after{
-top:10px;
-left:9px;
-width:2px;
-height:2px;
-box-shadow:
-6px 0 0 #ff6ec7,
-0 0 5px rgba(34,211,238,.8),
-6px 0 5px rgba(255,110,199,.8);
-}
-
-.helper-trail{
-bottom:20px;
-}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agents of Advocacy | Luna Blaze</title>
+  <style>
+    :root{
+      --bg1:#2b174e;
+      --bg2:#3a1f64;
+      --card:rgba(255,255,255,0.12);
+      --border:rgba(255,255,255,0.18);
+      --text:#ffffff;
+      --muted:#efe8ff;
+      --accent:#ffd166;
+      --accent2:#9bf6ff;
+      --shadow:0 18px 40px rgba(0,0,0,0.25);
+      --radius:24px;
+      --max:1000px;
+    }
+
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,209,102,0.18), transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(155,246,255,0.18), transparent 22%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:48px 20px 28px;
+    }
+
+    .hero{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:40px 28px;
+      text-align:center;
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow{
+      font-size:0.95rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--accent2);
+      margin-bottom:14px;
+      font-weight:bold;
+    }
+
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(2rem, 5vw, 3.5rem);
+      line-height:1.05;
+    }
+
+    .sub{
+      font-size:1.2rem;
+      color:var(--muted);
+      margin:8px 0 18px;
+    }
+
+    .tagline{
+      font-size:1.05rem;
+      margin:0 auto 18px;
+      max-width:760px;
+      color:#fff9db;
+    }
+
+    .identity{
+      font-size:1rem;
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+
+    .helper{
+      margin:0 auto 28px;
+      max-width:720px;
+      font-size:1rem;
+      line-height:1.6;
+      color:#ffffff;
+    }
+
+    .button-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+      margin-bottom:24px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#1d1232;
+      background:var(--accent);
+      font-weight:bold;
+      box-shadow:var(--shadow);
+      transition:transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .btn.secondary{
+      background:var(--accent2);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      opacity:0.96;
+    }
+
+    .about{
+      margin-top:26px;
+      text-align:left;
+      background:rgba(255,255,255,0.08);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px 20px;
+    }
+
+    .about h2{
+      margin:0 0 12px;
+      font-size:1.25rem;
+    }
+
+    .about p{
+      margin:0;
+      line-height:1.7;
+      color:#f7f3ff;
+    }
+
+    .note{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.16);
+      font-size:0.96rem;
+      line-height:1.6;
+      color:#fffbea;
+    }
+
+    footer{
+      text-align:center;
+      margin-top:22px;
+      font-size:0.9rem;
+      color:var(--muted);
+    }
+
+    @media (max-width:640px){
+      .hero{padding:30px 18px;}
+      .about{text-align:left;}
+      .btn{width:100%;}
+      .button-row{align-items:stretch;}
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Agents of Advocacy</div>
+      <h1>Luna Blaze</h1>
+      <p class="sub">Amplifying Voices • Illuminating Truth</p>
+      <p class="tagline">AI for Advocacy • Amplifying Educator Voices</p>
+      <p class="identity">Karrie De Torres • Educator • Organizer • Advocate</p>
 
-<div class="stars">
-  <div class="star small" style="top:10%;left:20%"></div>
-  <div class="star medium" style="top:25%;left:80%"></div>
-  <div class="star" style="top:40%;left:15%"></div>
-  <div class="star medium" style="top:60%;left:70%"></div>
-  <div class="star" style="top:75%;left:35%"></div>
-</div>
-
-<div class="magic-dust">
-  <div class="dust" style="left:20%"></div>
-  <div class="dust" style="left:40%"></div>
-  <div class="dust" style="left:60%"></div>
-  <div class="dust" style="left:80%"></div>
-</div>
-
-<div class="shooting-star one"></div>
-<div class="shooting-star two"></div>
-
-<div class="container">
-
-  <div class="hero">
-    <div class="aurora"></div>
-
-    <h1 class="main-title">Agents of Advocacy</h1>
-
-    <div class="subtitle">Luna Blaze</div>
-
-    <div class="sigil">✦</div>
-
-    <img class="luna-avatar" src="luna-blaze.png" alt="Luna Blaze">
-
-    <div class="motto">
-      “Amplifying Voices • Illuminating Truth”
-    </div>
-
-    <p class="tagline">
-      AI for Advocacy • Amplifying Educator Voices
-    </p>
-
-    <p class="name">
-      Karrie De Torres • Educator • Organizer • Advocate
-    </p>
-
-    <div class="button-group">
-      <a class="button primary" href="ai-advocacy">Enter the Advocacy Portal</a>
-      <a class="button secondary" href="command-center.html">Open the Command Center</a>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="card">
-      <h2>About This Project</h2>
-
-      <p>
-        This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication.
+      <p class="helper">
+        This site is the companion hub for your AI for Advocacy training. Start with the Advocacy Portal for session materials and ready-made prompts, or jump into the Command Center for deeper advocacy workflows.
       </p>
 
-      <p>
-        These resources were developed for educator trainings focused on responsible and practical uses of AI for organizing, policy communication, and collective action.
-      </p>
-    </div>
+      <div class="button-row">
+        <a class="btn" href="/ai-advocacy/">Enter the Advocacy Portal</a>
+        <a class="btn secondary" href="/command-center.html">Open the Command Center</a>
+      </div>
+
+      <section class="about">
+        <h2>About This Project</h2>
+        <p>
+          This site collects tools, prompts, and real examples showing how artificial intelligence can support educator advocacy, organizing, and member communication. These resources were developed for educator trainings focused on practical, responsible uses of AI for organizing, policy communication, and collective action.
+        </p>
+      </section>
+
+      <div class="note">
+        ✦ Cosmic Disclosure: Parts of this website were created with the assistance of artificial intelligence. Luna Blaze supervised the robots, reviewed the content, and did not let them run the union. ✦
+      </div>
+    </section>
+
+    <footer>© 2025 Karrie De Torres</footer>
   </div>
-
-  <div class="footer">
-    <div style="max-width:760px;margin:0 auto 14px auto;padding:14px 18px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.05);color:#e9d5ff;line-height:1.6;">
-      <span class="luna-sparkle">✦</span>
-      Cosmic Disclosure: Parts of this website were created with the assistance of artificial intelligence.
-      Luna Blaze supervised the robots, kept them mostly well-behaved, and reviewed the content before it went live.
-      <span class="luna-sparkle">✦</span>
-    </div>
-
-    <div>
-      © 2025 Karrie De Torres
-    </div>
-  </div>
-
-</div>
-
-<div class="helper-trail" aria-hidden="true"></div>
-<div class="luna-helper" aria-hidden="true"></div>
-
 </body>
 </html>
