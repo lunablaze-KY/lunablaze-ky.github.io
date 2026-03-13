@@ -1,1 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for Advocacy | Training Hub</title>
 
+  <style>
+    body{
+      margin:0;
+      font-family:'Trebuchet MS',sans-serif;
+      color:white;
+      background:
+        radial-gradient(circle at 20% 20%, #7c3aed 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, #06b6d4 0%, transparent 40%),
+        radial-gradient(circle at 40% 80%, #8b5cf6 0%, transparent 40%),
+        linear-gradient(135deg,#0f172a,#1e1b4b,#020617);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    .stars{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .star{
+      position:absolute;
+      width:4px;
+      height:4px;
+      background:white;
+      border-radius:50%;
+      box-shadow:
+        0 0 3px rgba(255,255,255,.6),
+        0 0 6px rgba(255,255,255,.35);
+      animation:twinkle 5s infinite ease-in-out;
+    }
+
+    .star.small{
+      width:2px;
+      height:2px;
+      animation-duration:4s;
+    }
+
+    .star.medium{
+      width:5px;
+      height:5px;
+      animation-duration:6s;
+    }
+
+    @keyframes twinkle{
+      0%{opacity:.3;transform:scale(.7);}
+      50%{opacity:.8;transform:scale(1.15);}
+      100%{opacity:.3;transform:scale(.7);}
+    }
+
+    .magic-dust{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .dust{
+      position:absolute;
+      width:3px;
+      height:3px;
+      border-radius:50%;
+      background:rgba(255,255,255,.8);
+      box-shadow:
+        0 0 4px rgba(255,255,255,.45),
+        0 0 8px rgba(255,255,255,.25);
+      opacity:.35;
+      animation:drift 45s linear infinite;
+    }
+
+    @keyframes drift{
+      0%{
+        transform:translate(0px,0px);
+        opacity:.25;
+      }
+      50%{
+        transform:translate(20px,-600px);
+        opacity:.5;
+      }
+      100%{
+        transform:translate(-15px,-1200px);
+        opacity:.25;
+      }
+    }
+
+    .shooting-star{
+      position:fixed;
+      width:120px;
+      height:2px;
+      background:linear-gradient(
+        90deg,
+        rgba(255,255,255,0),
+        rgba(255,255,255,.9),
+        rgba(255,255,255,0)
+      );
+      box-shadow:0 0 6px rgba(255,255,255,.5);
+      opacity:0;
+      transform:rotate(-25deg);
+      pointer-events:none;
+      z-index:2;
+    }
+
+    .shooting-star.one{
+      top:12%;
+      left:-20%;
+      animation:shoot1 12s linear infinite;
+      animation-delay:2s;
+    }
+
+    .shooting-star.two{
+      top:35%;
+      left:-30%;
+      animation:shoot2 14s linear infinite;
+      animation-delay:7s;
+    }
+
+    @keyframes shoot1{
+      0%,85%{
+        opacity:0;
+        transform:translateX(0) translateY(0) rotate(-25deg);
+      }
+      87%{opacity:.8;}
+      100%{
+        opacity:0;
+        transform:translateX(1400px) translateY(320px) rotate(-25deg);
+      }
+    }
+
+    @keyframes shoot2{
+      0%,88%{
+        opacity:0;
+        transform:translateX(0) translateY(0) rotate(-25deg);
+      }
+      90%{opacity:.8;}
+      100%{
+        opacity:0;
+        transform:translateX(1500px) translateY(360px) rotate(-25deg);
+      }
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 20px 70px;
+      position:relative;
+      z-index:3;
+    }
+
+    .hero,.card,.prompt-box{
+      background:rgba(15,23,42,.65);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      box-shadow:0 0 15px rgba(255,255,255,.05);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero{
+      padding:32px;
+      margin-bottom:28px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 12px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      background:linear-gradient(135deg,#06b6d4,#22d3ee);
+      color:#021018;
+      font-weight:700;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:14px;
+      box-shadow:0 0 6px rgba(255,255,255,.35);
+    }
+
+    h1{
+      font-size:48px;
+      margin:0 0 10px;
+      letter-spacing:2px;
+      text-shadow:
+        0 0 4px rgba(255,255,255,.45),
+        0 0 10px rgba(255,255,255,.22);
+    }
+
+    h2{
+      margin-top:0;
+      font-size:28px;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:20px;
+      color:#dbeafe;
+    }
+
+    .subhead{
+      color:#e0e7ff;
+      font-size:18px;
+      margin-bottom:0;
+      line-height:1.6;
+    }
+
+    .tip,.start,.prompt-section,.ethics-section{
+      margin-bottom:28px;
+      padding:24px;
+    }
+
+    .tip{
+      display:inline-block;
+      margin-top:18px;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      padding:12px 16px;
+    }
+
+    .start{
+      background:rgba(34,211,238,.10);
+    }
+
+    .prompt-section{
+      background:rgba(34,211,238,.08);
+    }
+
+    .ethics-section{
+      background:rgba(167,139,250,.10);
+    }
+
+    .prompt-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .prompt-box{
+      padding:16px;
+      background:rgba(255,255,255,.06);
+      margin-top:0;
+    }
+
+    .prompt-label{
+      font-weight:bold;
+      margin-bottom:8px;
+      color:#67e8f9;
+    }
+
+    .prompt-text{
+      font-family:"Courier New",monospace;
+      font-size:14px;
+      line-height:1.5;
+      white-space:pre-wrap;
+      color:#f8fafc;
+    }
+
+    .copy-btn{
+      margin-top:12px;
+      background:linear-gradient(135deg,#06b6d4,#22d3ee);
+      color:white;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:10px;
+      padding:8px 12px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .copy-btn:hover{
+      box-shadow:0 0 12px rgba(34,211,238,.35);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:22px;
+    }
+
+    .card{
+      padding:20px;
+    }
+
+    .link-btn,.placeholder{
+      display:block;
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.2);
+      text-decoration:none;
+    }
+
+    .link-btn{
+      background:rgba(255,255,255,.08);
+      color:white;
+      font-weight:bold;
+    }
+
+    .link-btn:hover{
+      background:rgba(6,182,212,.2);
+      box-shadow:0 0 12px rgba(255,255,255,.25);
+    }
+
+    .placeholder{
+      background:rgba(255,255,255,.05);
+      color:#cbd5e1;
+      font-style:italic;
+      border-style:dashed;
+    }
+
+    .home-link{
+      display:inline-block;
+      margin-bottom:20px;
+      color:#7dd3fc;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .home-link:hover{
+      text-decoration:underline;
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+      margin-top:16px;
+    }
+
+    .mini-box{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .mini-box ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.7;
+      color:#e0e7ff;
+    }
+
+    .footer{
+      margin-top:34px;
+      font-size:14px;
+      line-height:1.6;
+      color:#cbd5f5;
+      border-top:1px solid rgba(255,255,255,.15);
+      padding-top:20px;
+    }
+
+    .note-box{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.15);
+      padding:14px;
+      border-radius:12px;
+      margin-bottom:18px;
+    }
+
+    @media (max-width:700px){
+      h1{font-size:38px;}
+      .hero{padding:24px;}
+      h2{font-size:24px;}
+      .container{padding:28px 14px 50px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars">
+    <div class="star small" style="top:10%;left:20%"></div>
+    <div class="star medium" style="top:25%;left:80%"></div>
+    <div class="star" style="top:40%;left:15%"></div>
+    <div class="star medium" style="top:60%;left:70%"></div>
+    <div class="star" style="top:75%;left:35%"></div>
+    <div class="star small" style="top:15%;left:55%"></div>
+    <div class="star medium" style="top:50%;left:50%"></div>
+    <div class="star" style="top:85%;left:80%"></div>
+  </div>
+
+  <div class="magic-dust">
+    <div class="dust" style="left:10%;animation-delay:0s"></div>
+    <div class="dust" style="left:20%;animation-delay:8s"></div>
+    <div class="dust" style="left:30%;animation-delay:14s"></div>
+    <div class="dust" style="left:40%;animation-delay:5s"></div>
+    <div class="dust" style="left:50%;animation-delay:11s"></div>
+    <div class="dust" style="left:60%;animation-delay:17s"></div>
+    <div class="dust" style="left:70%;animation-delay:3s"></div>
+    <div class="dust" style="left:80%;animation-delay:13s"></div>
+    <div class="dust" style="left:90%;animation-delay:20s"></div>
+  </div>
+
+  <div class="shooting-star one"></div>
+  <div class="shooting-star two"></div>
+
+  <div class="container">
+    <a class="home-link" href="/">← Back to Luna Blaze Home</a>
+
+    <section class="hero">
+      <div class="badge">Agents of Advocacy</div>
+      <h1>AI for Advocacy Training Hub</h1>
+      <p class="subhead">
+        Tools, prompts, and real examples to help educators organize, communicate, and build collective power.
+      </p>
+      <div class="tip">
+        <strong>Tip:</strong> Bookmark this page so you can return to the tools after the session.
+      </div>
+    </section>
+
+    <section class="hero start">
+      <h2>🚀 Start Here</h2>
+      <ol style="line-height:1.8;color:#e0e7ff;">
+        <li>Open the presentation deck</li>
+        <li>Join the Padlet reflection activity</li>
+        <li>Use the ready-made prompt bank below</li>
+        <li>Open the Command Center for deeper advocacy workflows</li>
+      </ol>
+      <a class="link-btn" href="/command-center.html">🔗 Open the Advocacy Command Center</a>
+    </section>
+
+    <section class="hero prompt-section">
+      <h2>⚡ Ready-Made Prompt Bank</h2>
+      <p style="color:#e0e7ff;line-height:1.7;">
+        Copy a prompt below and paste it into the AI of your choice to generate something useful for your union or advocacy work.
+      </p>
+
+      <div class="prompt-grid">
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt: Member Communication</div>
+          <div class="prompt-text" id="prompt1">Write a clear, supportive message to educators about an important school or union issue. Use a professional but approachable tone. Include a short explanation of why the issue matters, one concrete next step people can take, and a closing that encourages collective action.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt1', this)">Copy Prompt</button>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt: Contract or Policy Summary</div>
+          <div class="prompt-text" id="prompt2">I am a union leader. Summarize the most important points from this policy document in plain language educators can understand. Highlight any changes, rights, responsibilities, and potential concerns. Then suggest three questions members might ask.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt2', this)">Copy Prompt</button>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt: Email to a Legislator</div>
+          <div class="prompt-text" id="prompt3">Act as a public education advocate. Draft a respectful email to a legislator about [ISSUE]. Explain why it matters for students, educators, and public schools. Keep it concise, persuasive, and professional. Include one clear ask at the end.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt3', this)">Copy Prompt</button>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt: Public Comment or Testimony</div>
+          <div class="prompt-text" id="prompt4">Help me draft a 60-90 second public comment for a school board or legislative meeting about [ISSUE]. Make it clear, emotionally grounded, respectful, and specific. Include why this matters for students, educators, and families, and end with a direct call to action.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt4', this)">Copy Prompt</button>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt: Meeting Notes to Action Steps</div>
+          <div class="prompt-text" id="prompt5">Turn these meeting notes into a practical action plan. Organize the output into: key takeaways, urgent issues, decisions made, unanswered questions, and next steps. Then create a short follow-up message I can send to members or partners.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt5', this)">Copy Prompt</button>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt: Plain Language for Families</div>
+          <div class="prompt-text" id="prompt6">Explain this policy, proposal, or school issue in plain language that families can understand. Avoid jargon. Include what is changing, who may be affected, why it matters, and 3 questions families may want to ask.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt6', this)">Copy Prompt</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero ethics-section">
+      <h2>🛡️ Responsible AI Use</h2>
+
+      <div class="mini-grid">
+        <div class="mini-box">
+          <h3>Before You Use AI</h3>
+          <ul>
+            <li>Do not enter confidential or student-identifying information.</li>
+            <li>Fact-check claims, dates, bill numbers, and quotes.</li>
+            <li>Review outputs for bias, missing context, or errors.</li>
+            <li>Use human judgment before sharing publicly.</li>
+          </ul>
+        </div>
+
+        <div class="mini-box">
+          <h3>Transparency & Copyright</h3>
+          <ul>
+            <li>Label AI-assisted work when appropriate.</li>
+            <li>Do not pass off AI-generated work as fully human-created if it was not.</li>
+            <li>Be cautious with copyrighted text, images, and branded materials.</li>
+            <li>Follow district, union, and organizational policies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box" style="margin-top:18px;color:#e0e7ff;">
+        <strong>Suggested disclosure:</strong> “This material was created with the assistance of AI and reviewed by the presenter for accuracy and appropriateness.”
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>🧰 Session Materials</h2>
+        <a class="link-btn" href="https://www.canva.com/design/DAG9hNCHsGA/hexMU4VVfZlU1ioQvNxjJA/view?utm_content=DAG9hNCHsGA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf645702557" target="_blank" rel="noopener noreferrer">🔗 Presentation Deck</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1Hsd7nnfKzTZ4Gg5xhmfS5NDhpJzaeYH-/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🔗 AI Advocacy Resource Handout</a>
+        <a class="link-btn" href="https://www.canva.com/design/DAGuAbMDdec/Ddw2vqm9BwBT-GNYgUe1zQ/view?utm_content=DAGuAbMDdec&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" rel="noopener noreferrer">🔗 AI Prompt Bank, Notes & Reflection Handouts</a>
+        <a class="link-btn" href="/command-center.html">🔗 Advocacy Command Center</a>
+      </section>
+
+      <section class="card">
+        <h2>🎯 Interactive Activities</h2>
+        <a class="link-btn" href="https://padlet.com/karriedetorres/ai-training-reflection-hyrhjujsgcn8tl2" target="_blank" rel="noopener noreferrer">🔗 Padlet Reflection Wall</a>
+      </section>
+
+      <section class="card">
+        <h2>🤖 AI Tools From Today’s Training</h2>
+        <a class="link-btn" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">🔗 ChatGPT</a>
+        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener noreferrer">🔗 Claude</a>
+        <a class="link-btn" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">🔗 Gemini</a>
+        <a class="link-btn" href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer">🔗 NotebookLM</a>
+        <a class="link-btn" href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🔗 Canva</a>
+        <a class="link-btn" href="https://gamma.app" target="_blank" rel="noopener noreferrer">🔗 Gamma</a>
+        <a class="link-btn" href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer">🔗 Perplexity</a>
+      </section>
+
+      <section class="card">
+        <h2>✨ Real Examples Made with AI</h2>
+        <a class="link-btn" href="https://www.canva.com/design/DAHDTmS8YLE/gK1BFx7253i_tcTjMDfcEQ/view?utm_content=DAHDTmS8YLE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4effd29358" target="_blank" rel="noopener noreferrer">🔗 AI in Action Advocacy Graphic</a>
+        <a class="link-btn" href="https://claude.ai/public/artifacts/c73d81cf-ab07-4fd6-9181-7617e5db05d1" target="_blank" rel="noopener noreferrer">🔗 AI-Guided Member Conversation App</a>
+        <a class="link-btn" href="https://drive.google.com/file/d/1R9NhTeHYuLyDQJF5_m0B4YHcGKtY76U6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🔗 Pre-K for All Policy Brief</a>
+      </section>
+
+      <section class="card">
+        <h2>📚 Advocacy & AI Resources</h2>
+
+        <p style="margin-top:8px;color:#e0e7ff;line-height:1.6;">
+          Use this decision guide to help determine when generative AI is appropriate for a task.
+        </p>
+
+        <div style="margin-top:16px;">
+          <iframe
+            src="Is-it-safe-to-use-generative-AI-for-your-task.pdf"
+            width="100%"
+            height="600px"
+            style="border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);">
+          </iframe>
+        </div>
+
+        <a class="link-btn"
+           href="Is-it-safe-to-use-generative-AI-for-your-task.pdf"
+           target="_blank"
+           rel="noopener noreferrer">
+           🔗 Open the AI Safety Decision Guide (PDF)
+        </a>
+
+        <a class="link-btn"
+           href="https://www.nea.org/resource-library/artificial-intelligence-education"
+           target="_blank"
+           rel="noopener noreferrer">
+           🔗 NEA Artificial Intelligence in Education Guidance
+        </a>
+
+        <a class="link-btn"
+           href="https://www.nea.org/ai"
+           target="_blank"
+           rel="noopener noreferrer">
+           🔗 NEA AI Resource Hub
+        </a>
+
+        <a class="link-btn"
+           href="https://www.nea.org/resource-library/artificial-intelligence-education/vii-full-statement-text"
+           target="_blank"
+           rel="noopener noreferrer">
+           🔗 NEA Policy Statement: Artificial Intelligence in Education
+        </a>
+      </section>
+
+      <section class="card">
+        <h2>📣 Stay Connected</h2>
+        <a class="link-btn" href="mailto:karrie.detorres@jcta.org">🔗 Email the Presenter</a>
+      </section>
+    </div>
+
+    <div class="footer">
+      <p class="note-box">
+        <strong>AI Tool Disclosure:</strong> Any information entered into ChatGPT or other free/open AI tools may be stored or used by those third-party platforms.
+        The National Education Association (NEA) does not endorse open-source or free AI tools due to potential concerns related to data privacy, accuracy, and data storage practices.
+        Please review the AI and advocacy resources linked on this page for guidance from NEA before using AI tools for union or advocacy work.
+      </p>
+
+      <p><strong>Reuse Note:</strong> You are welcome to use, share, and adapt these materials for educator, union, and advocacy purposes with credit to Karrie De Torres. Please do not sell, repost as your own, or use for commercial training without permission.</p>
+      <p>© 2025 Karrie De Torres</p>
+    </div>
+  </div>
+
+  <script>
+    async function copyPrompt(id, button){
+      const text = document.getElementById(id).innerText;
+      try{
+        await navigator.clipboard.writeText(text);
+        const original = button.innerText;
+        button.innerText = "Copied!";
+        setTimeout(() => {
+          button.innerText = original;
+        }, 1500);
+      } catch(e){
+        alert("Copy failed. Please copy manually.");
+      }
+    }
+  </script>
+</body>
+</html>
